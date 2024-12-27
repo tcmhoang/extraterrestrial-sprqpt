@@ -1,0 +1,26 @@
+{
+  "name": "sprqpt",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "devDependencies": {
+    "@astrojs/mdx": "^4.0.3",
+    "@astrojs/rss": "^4.0.10",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/svelte": "^7.0.2",
+    "astro": "^5.1.1",
+    "@fullhuman/postcss-purgecss": "^7.0.2",
+    "cssnano": "^7.0.6",
+    "postcss-combine-duplicated-selectors": "^10.0.3",
+    "postcss-preset-env": "^10.1.2",
+    "sass": "^1.83.0",
+    "svelte": "^5.16.0",
+    "svelte-check": "^4.1.1",
+    "typescript": "^5.7.2"
+  }
+}
