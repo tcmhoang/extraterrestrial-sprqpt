@@ -3,9 +3,16 @@ import combineDuplicatedSelectors from "postcss-combine-duplicated-selectors";
 import postcssPresetEnv from "postcss-preset-env";
 import purgecss from "@fullhuman/postcss-purgecss";
 import cssnano from "cssnano";
+import * as path from "jsr:@std/path";
 
 export default {
   extensions: [".svelte"],
+  "resolve.alias": {
+    "@": path.resolve(import.meta.dirname ?? "", "./src/"),
+    "@styles": path.resolve(import.meta.dirname ?? "", "./src/styles/"),
+    "@components": path.resolve(import.meta.dirname ?? "", "./src/components/"),
+    "@layouts": path.resolve(import.meta.dirname ?? "", "./src/layouts/"),
+  },
   preprocess: [
     vitePreprocess({
       style: {
