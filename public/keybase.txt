@@ -1,0 +1,57 @@
+==================================================================
+https://keybase.io/tcmhoang
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://sprqpt.com
+  * I am tcmhoang (https://keybase.io/tcmhoang) on keybase.
+  * I have a public key ASA6rEkaoSnZR__q40-J2xg5aBXs5guCib4MRlyqvQYv0go
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01203aac491aa129d947ffeae34f89db18396815ece60b8289be0c465caabd062fd20a",
+      "host": "keybase.io",
+      "kid": "01203aac491aa129d947ffeae34f89db18396815ece60b8289be0c465caabd062fd20a",
+      "uid": "4b38767cdd3754bb9016488d58cfae19",
+      "username": "tcmhoang"
+    },
+    "merkle_root": {
+      "ctime": 1705155587,
+      "hash": "4fef2f6f177bd99e955d4294e20b8e64b639270313ba458bf18762eca3947cb7d452b8a6120ec3cb33b1dc0c05335a44e4ea14e1691df3e9780667bb74ef277f",
+      "hash_meta": "a4b3c6da292dd35fd2b62c28f28743bebc8d33769133c029e7dac78280f8c7fb",
+      "seqno": 25352071
+    },
+    "service": {
+      "entropy": "phWsYQd0DXhxtod1qoOnyd+5",
+      "hostname": "sprqpt.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.2.4"
+  },
+  "ctime": 1705155595,
+  "expire_in": 504576000,
+  "prev": "8ba26beb424e567445a29637ee2f76a4ccab7eae0cc03b5f2fecb74834ee602d",
+  "seqno": 11,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgOqxJGqEp2Uf/6uNPidsYOWgV7OYLgom+DEZcqr0GL9IKp3BheWxvYWTESpcCC8Qgi6Jr60JOVnRFopY37i92pMyrfq4MwDtfL+y3SDTuYC3EICUvS6M5YDPZWQSNzWKJOYxYHzu0xTGp+hNKY032GBtyAgHCo3NpZ8RAy0MwYp5wshF4X/Ckf0TCoMMh2lmdLByW1lPyT5coNSayYTs9ejchxr748HnHV7mKnax5FQmS/7t4FJzAbqfxA6hzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIE+5z/imdN5KCIj2ZQEwvBlFd5NsRzrv95VCZH9MtHkmo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/tcmhoang
+
+==================================================================
+
