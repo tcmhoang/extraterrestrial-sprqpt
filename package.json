@@ -6,7 +6,10 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier . --write --cache --list-different",
+    "check:astro": "astro check",
+    "check:svelte": "svelte-check --tsconfig ./tsconfig.json"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.0.3",
@@ -18,6 +21,10 @@
     "cssnano": "^7.0.6",
     "postcss-combine-duplicated-selectors": "^10.0.3",
     "postcss-preset-env": "^10.1.2",
+    "prettier": "^3.4.2",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-jsdoc": "^1.3.0",
+    "prettier-plugin-svelte": "^3.3.2",
     "sass": "^1.83.0",
     "svelte": "^5.16.0",
     "svelte-check": "^4.1.1",

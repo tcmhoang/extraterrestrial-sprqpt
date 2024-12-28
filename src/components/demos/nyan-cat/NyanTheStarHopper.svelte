@@ -1,4 +1,4 @@
-<script >
+<script>
 	import { onMount } from 'svelte';
 	import Cat from './Cat.svelte';
 	import { Tween } from 'svelte/motion';
@@ -14,7 +14,6 @@
 	let x = new Tween(0.3, {
 		duration: 300,
 		easing: cubicOut
-
 	});
 
 	/** @type number */
@@ -25,8 +24,9 @@
 	/** @type number */
 	const k_min = 0.3;
 
-	/** @function
-	 * @param {PointerEvent} e event fires when moving the pointer
+	/**
+	 * @function
+	 * @param {PointerEvent} e Event fires when moving the pointer
 	 * @returns {void}
 	 */
 	const handle_pointer = (e) => {
@@ -35,12 +35,13 @@
 		}
 
 		timeout = window.requestAnimationFrame(() => {
-			x.set( Math.min(Math.max(e.clientX / container.clientWidth, k_min), k_max));
+			x.set(Math.min(Math.max(e.clientX / container.clientWidth, k_min), k_max));
 			y = e.clientY / container.clientHeight;
 		});
 	};
 
-	/** @function
+	/**
+	 * @function
 	 * @param {DeviceOrientationEvent} e
 	 * @returns {void}
 	 */
@@ -53,13 +54,15 @@
 		}
 
 		timeout = window.requestAnimationFrame(() => {
-			x.set( Math.min(Math.max((is_landscape ? gamma ?? 0 : beta ?? 0) / 90 + 0.5, k_min), k_max));
+			x.set(
+				Math.min(Math.max((is_landscape ? (gamma ?? 0) : (beta ?? 0)) / 90 + 0.5, k_min), k_max)
+			);
 		});
 	};
 
 	onMount(async () => {
-		const mb_ios_orientation_event = /** @type DeviceOrientationIOS*/ (
-			/** @type unknown*/ (window.DeviceOrientationEvent)
+		const mb_ios_orientation_event = /** @type DeviceOrientationIOS */ (
+			/** @type unknown */ (window.DeviceOrientationEvent)
 		);
 		const is_ios =
 			'requestPermission' in window.DeviceOrientationEvent &&
@@ -85,7 +88,7 @@
 	style="--x: {x.current}; --y: {y};"
 	onpointermove={handle_pointer}
 >
-<div class="rainbow"></div>
+	<div class="rainbow"></div>
 	<div class="starfield">
 		{#each Array(12) as _}
 			<div class="star"></div>
@@ -97,7 +100,7 @@
 </div>
 
 <style lang="scss">
-        @use 'sass:list';
+	@use 'sass:list';
 
 	$red: #f00;
 	$orange: #f90;
@@ -139,7 +142,11 @@
 		@function render_rainbow() {
 			$res: ();
 			@each $c in $colors {
-				$res: list.append($res, (_gen2StopTile($c, transparent), _gen2StopTile(transparent, $c)), comma);
+				$res: list.append(
+					$res,
+					(_gen2StopTile($c, transparent), _gen2StopTile(transparent, $c)),
+					comma
+				);
 			}
 			@return $res;
 		}
@@ -277,7 +284,7 @@
 				(
 					(10%, 50%),
 					(90%, 50%),
-	 				(50%, 10%),
+					(50%, 10%),
 					(50%, 90%),
 					(25%, 25%),
 					(75%, 75%),
