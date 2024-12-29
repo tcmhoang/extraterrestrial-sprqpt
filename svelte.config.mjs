@@ -3,7 +3,7 @@ import combineDuplicatedSelectors from 'postcss-combine-duplicated-selectors';
 import postcssPresetEnv from 'postcss-preset-env';
 import purgecss from '@fullhuman/postcss-purgecss';
 import cssnano from 'cssnano';
-import * as path from 'jsr:@std/path';
+import * as path from '@std/path';
 
 export default {
 	extensions: ['.svelte'],

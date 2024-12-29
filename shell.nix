@@ -3,11 +3,11 @@ pkgs.mkShellNoCC {
   name = "sprqpt's shell";
   buildInputs = with pkgs; [
     deno
-	astro-language-server
-svelte-language-server
-typescript-language-server
-vscode-langservers-extracted
-
+    astro-language-server
+    svelte-language-server
+    typescript-language-server
+    vscode-extensions.denoland.vscode-deno
+    vscode-langservers-extracted
   ];
   shellHook = ''
     deno i --allow-scripts
