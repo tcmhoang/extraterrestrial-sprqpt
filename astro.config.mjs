@@ -8,5 +8,8 @@ import svelte from '@astrojs/svelte';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://sprqpt.com',
-	integrations: [mdx(), sitemap(), svelte({ extensions: ['.svelte'] })]
+	integrations: [mdx(), sitemap(), svelte({ extensions: ['.svelte'] })],
+	experimental: {
+		svg: true
+	}
 });
