@@ -1,0 +1,30 @@
+---
+import 'styles/base.scss';
+import Nav from 'components/masters/Nav.astro';
+import Footer from 'components/masters/Footer/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no" />
+		<meta name="author" content="Conrad Hoang" />
+		<meta name="theme-color" content="#F9E2AF" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png" />
+		<link rel="shortcut icon" href="/images/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png" />
+		<link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+		<link rel="manifest" href="/manifest.json" />
+		<meta property="og:type" content="website" />
+		<slot name="additional_head" />
+	</head>
+
+	<body>
+		<Nav />
+		<div style="display: contents"><slot /></div>
+	</body>
+
+	<Footer />
+</html>

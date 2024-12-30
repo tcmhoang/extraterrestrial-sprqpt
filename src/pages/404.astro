@@ -1,14 +1,14 @@
 ---
-import Nav from 'components/masters/Nav.astro';
-import Footer from 'components/masters/Footer/Footer.astro';
+import BaseLayout from 'layouts/Base.astro';
 ---
 
-<Nav />
-<main>
-	<h2>404</h2>
-	<span><strong>Oops!</strong> {Astro.url.pathname} is gone missing?!</span>
-</main>
-<Footer />
+<BaseLayout>
+	<title slot="additional_head">Babe, You lost!</title>
+	<main>
+		<h2>404</h2>
+		<span><strong>Oops!</strong> {Astro.url.pathname} is gone missing?!</span>
+	</main>
+</BaseLayout>
 
 <style>
 	main {
