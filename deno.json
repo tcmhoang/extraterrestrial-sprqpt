@@ -21,7 +21,8 @@
     "@/": "./src/",
     "@styles/": "./src/styles/",
     "@components/": "./src/components/",
-    "@layouts/": "./src/layouts/"
+    "@layouts/": "./src/layouts/",
+    "@assets/": "./src/assets/"
   },
   "fmt": {
     "useTabs": true,

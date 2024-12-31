@@ -11,7 +11,8 @@ export default {
 		'@': path.resolve(import.meta.dirname ?? '', './src/'),
 		'@styles': path.resolve(import.meta.dirname ?? '', './src/styles/'),
 		'@components': path.resolve(import.meta.dirname ?? '', './src/components/'),
-		'@layouts': path.resolve(import.meta.dirname ?? '', './src/layouts/')
+		'@layouts': path.resolve(import.meta.dirname ?? '', './src/layouts/'),
+		'@assets': path.resolve(import.meta.dirname ?? '', './src/assets/')
 	},
 	preprocess: [
 		vitePreprocess({
