@@ -1,0 +1,150 @@
+---
+import Avatar from './Avatar.astro';
+import Banner from './Banner.astro';
+import EmailSender from './EmailSender.astro';
+
+export type Props = {
+	heading: string | undefined;
+	banner_data: BannerData;
+	deets: Detail[];
+	summary: string[] | undefined;
+};
+
+const { heading: mb_heading, banner_data, deets, summary: mb_summary } = Astro.props;
+---
+
+<header>
+	<div class="banner-container">
+		{
+			typeof banner_data.hero_url == 'string' ? (
+				<Banner
+					hero_url={banner_data.hero_url}
+					hero_alt={banner_data.hero_alt}
+					hero_css={(banner_data as BannerIFrameData).hero_css}
+				/>
+			) : (
+				<Banner hero_url={banner_data.hero_url} hero_alt={banner_data.hero_alt} />
+			)
+		}
+	</div>
+
+	<div class="w-content overview">
+		<div class="avatar-container">
+			<div class="avatar-wrapper">
+				<Avatar />
+			</div>
+
+			<EmailSender />
+		</div>
+
+		<h1>
+			<slot name="header_heading"> {mb_heading ?? ''}</slot>
+		</h1>
+
+		<div class="summary {!(summary) ? 'summary-comp' : ''}">
+			<slot name="header_summary">
+				{(mb_summary ?? []).map((c) => <p>{c}</p>)}
+			</slot>
+		</div>
+
+		<span class="details">
+			{
+				deets.map(({ icon: Icon, text }) => (
+					<span class="detail">
+						<span class="dcon">
+							{' '}
+							<Icon />{' '}
+						</span>
+
+						{text.startsWith('/') ? (
+							<a href={text} title="Go to my {text.split('/').pop()}">
+								{text}
+							</a>
+						) : (
+							text
+						)}
+					</span>
+				))
+			}
+		</span>
+	</div>
+</header>
+
+<style lang="scss">
+	header {
+		max-width: var(--width);
+		width: 100%;
+		border-radius: 10px;
+		margin: auto;
+	}
+
+	.banner-container {
+		border-radius: 13px;
+		aspect-ratio: 3/1;
+		overflow: hidden;
+	}
+
+	.overview {
+		padding-left: 1rem;
+		max-width: 100%;
+		padding-right: 1rem;
+		margin: auto;
+		display: grid;
+		grid-gap: 0.5rem;
+	}
+	.avatar-container {
+		position: relative;
+		display: flex;
+		justify-content: end;
+		align-items: center;
+		min-height: calc(var(--step-9) * 0.5);
+	}
+
+	.avatar-wrapper {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	.details {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+		color: var(--subtext);
+		font-size: var(--step--1);
+	}
+	.detail {
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+	.dcon {
+		width: 1.25rem;
+		height: 1.25rem;
+	}
+
+	.summary {
+		line-height: 1.25;
+		& > * {
+			margin-bottom: 0.5rem;
+		}
+	}
+
+	a {
+		font-weight: bold;
+		color: color-mix(in hsl, var(--peach), black 20%);
+		&:hover {
+			text-decoration: underline 4px;
+			text-underline-offset: 2px;
+		}
+	}
+
+	.summary-comp {
+		--text: var(--subtext);
+		--yellow: var(--peach);
+		--badge: var(--step-0);
+		font-size: var(--step-1);
+		padding-bottom: 0.5rem;
+	}
+</style>
