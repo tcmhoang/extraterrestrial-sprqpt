@@ -3,7 +3,14 @@ import { Image } from 'astro:assets';
 import avatar from 'assets/me.jpeg';
 ---
 
-<Image src={avatar} alt="Conrad" loading="eager" decoding="async" class="avatar" sizes="125px" />
+<Image
+	src={avatar}
+	alt="Conrad"
+	loading="eager"
+	decoding="async"
+	class="avatar"
+	sizes="125px"
+/>
 
 <style>
 	.avatar {

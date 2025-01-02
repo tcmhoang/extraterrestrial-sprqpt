@@ -38,7 +38,7 @@ const nyan_css = {
 		--c-fur: var(--l-surface);
 		--c-cheeck: var(--l-rosewater);
 		--c-shape: var(--l-text);
-		`
+		`,
 };
 
 const nyan_url = `/demos/nyan-cat`;
@@ -48,7 +48,7 @@ const nyan_alt = "Conrad's CSS Nyan Cat Demo";
 export const k_banner_data = {
 	hero_url: nyan_url,
 	hero_alt: nyan_alt,
-	hero_css: nyan_css
+	hero_css: nyan_css,
 };
 
 // Page Info
@@ -60,32 +60,33 @@ import PositionLocationIcon from 'components/icons/PositionLocationIcon.svg';
 
 export const hostname = 'SPRQPT';
 
-export const build_title = (/** @type string */ title) => `${title} • ${hostname}`;
+export const build_title = (/** @type string */ title) =>
+	`${title} • ${hostname}`;
 
 export const k_default_header_props = {
 	deets: [
 		{
 			text: 'Available',
-			icon: BriefcaseIcon
+			icon: BriefcaseIcon,
 		},
 		{
 			text: 'September 25th',
-			icon: BirthdayIcon
+			icon: BirthdayIcon,
 		},
 		{
 			text: '/blogs',
-			icon: BlogIcon
+			icon: BlogIcon,
 		},
 		{
 			text: 'Global',
-			icon: PositionLocationIcon
-		}
+			icon: PositionLocationIcon,
+		},
 	],
 
 	summary: [
 		'On the mission to spice up the web, pixel by pixel ✨',
-		'Software Admiral 🎖️, Inspiring Rubber Quack-tivist 🦆, Mayhem Mender 🩹, Bug Sleuth 🔍'
-	]
+		'Software Admiral 🎖️, Inspiring Rubber Quack-tivist 🦆, Mayhem Mender 🩹, Bug Sleuth 🔍',
+	],
 };
 
 // Tab routes
@@ -93,16 +94,16 @@ export const k_default_header_props = {
 export const k_tab_routes = [
 	{
 		label: 'Feed',
-		link: `/`
+		link: `/`,
 	},
 	{
 		label: 'About',
-		link: `/about`
+		link: `/about`,
 	},
 	{
 		label: 'Links',
-		link: `/links`
-	}
+		link: `/links`,
+	},
 ];
 
 export const k_hostname = 'SPRQPT';

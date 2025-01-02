@@ -10,9 +10,12 @@ export default {
 	'resolve.alias': {
 		'@': path.resolve(import.meta.dirname ?? '', './src/'),
 		'@styles': path.resolve(import.meta.dirname ?? '', './src/styles/'),
-		'@components': path.resolve(import.meta.dirname ?? '', './src/components/'),
+		'@components': path.resolve(
+			import.meta.dirname ?? '',
+			'./src/components/',
+		),
 		'@layouts': path.resolve(import.meta.dirname ?? '', './src/layouts/'),
-		'@assets': path.resolve(import.meta.dirname ?? '', './src/assets/')
+		'@assets': path.resolve(import.meta.dirname ?? '', './src/assets/'),
 	},
 	preprocess: [
 		vitePreprocess({
@@ -21,27 +24,27 @@ export default {
 					postcss: {
 						plugins: [
 							purgecss.default({
-								content: ['./**/*.css']
+								content: ['./**/*.css'],
 							}),
 							postcssPresetEnv({
 								features: {
 									'nesting-rules': {
-										noIsPseudoSelector: false
-									}
+										noIsPseudoSelector: false,
+									},
 								},
 								minimumVendorImplementations: 2,
-								browsers: '> 1%, last 2 versions, not dead'
+								browsers: '> 1%, last 2 versions, not dead',
 							}),
 							combineDuplicatedSelectors({
-								removeDuplicatedProperties: true
+								removeDuplicatedProperties: true,
 							}),
 							cssnano({
-								preset: 'default'
-							})
-						]
-					}
-				}
-			}
-		})
-	]
+								preset: 'default',
+							}),
+						],
+					},
+				},
+			},
+		}),
+	],
 };

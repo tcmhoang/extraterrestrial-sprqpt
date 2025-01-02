@@ -7,7 +7,13 @@ import { k_tab_routes } from '@/consts';
 		{
 			k_tab_routes.map(({ link, label }) => (
 				<li role="presentation">
-					<a href={link} role="tab" aria-selected={Astro.url.pathname == link ? 'true' : null}>
+					<a
+						href={link}
+						role="tab"
+						aria-selected={
+							Astro.url.pathname == link ? 'true' : null
+						}
+					>
 						<span>{label}</span>
 					</a>
 				</li>

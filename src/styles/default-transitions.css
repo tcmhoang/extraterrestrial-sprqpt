@@ -38,6 +38,8 @@
 
 :root::view-transition-new(root) {
 	animation:
-		var(--speed) cubic-bezier(0, 0, 0.2, 1) calc(var(--speed) * 0.3) both fade-in,
-		calc(var(--speed * 1.2)) cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+		var(--speed) cubic-bezier(0, 0, 0.2, 1) calc(var(--speed) * 0.3) both
+			fade-in,
+		calc(var(--speed * 1.2)) cubic-bezier(0.4, 0, 0.2, 1) both
+			slide-from-right;
 }

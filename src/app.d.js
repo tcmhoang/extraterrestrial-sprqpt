@@ -35,7 +35,8 @@
  * Contains information for constructing the banner image instance
  *
  * @typedef BannerImageData
- * @property {Promise<{ default: ImageMetadata }>} hero_url - Imported image for the hero banner
+ * @property {Promise<{ default: ImageMetadata }>} hero_url - Imported image for
+ *   the hero banner
  * @property {string} hero_alt - Alt text
  */
 

@@ -28,7 +28,9 @@ const { banner_data, summary, deets, heading } = Astro.props;
 			<NameWithVerifiedBadge slot="header_heading" />
 		</slot>
 		<slot name="header_summary" slot="header_summary">
-			<HeaderSummary summary={summary ?? k_default_header_props.summary} />
+			<HeaderSummary
+				summary={summary ?? k_default_header_props.summary}
+			/>
 		</slot>
 	</Header>
 

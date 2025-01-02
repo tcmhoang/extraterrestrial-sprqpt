@@ -22,7 +22,10 @@ const { heading: mb_heading, banner_data, deets } = Astro.props;
 					hero_css={(banner_data as BannerIFrameData).hero_css}
 				/>
 			) : (
-				<Banner hero_url={banner_data.hero_url} hero_alt={banner_data.hero_alt} />
+				<Banner
+					hero_url={banner_data.hero_url}
+					hero_alt={banner_data.hero_alt}
+				/>
 			)
 		}
 	</div>
@@ -52,7 +55,10 @@ const { heading: mb_heading, banner_data, deets } = Astro.props;
 						</span>
 
 						{text.startsWith('/') ? (
-							<a href={text} title="Go to my {text.split('/').pop()}">
+							<a
+								href={text}
+								title="Go to my {text.split('/').pop()}"
+							>
 								{text}
 							</a>
 						) : (

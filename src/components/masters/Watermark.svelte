@@ -3,7 +3,10 @@
 	let hide_seek = $state(false);
 </script>
 
-<svelte:body onmouseenter={() => (hide_seek = true)} onmouseleave={() => (hide_seek = false)} />
+<svelte:body
+	onmouseenter={() => (hide_seek = true)}
+	onmouseleave={() => (hide_seek = false)}
+/>
 
 <div class="wm-cat" class:hide_seek aria-hidden="true" role="presentation">
 	<CatIcon />

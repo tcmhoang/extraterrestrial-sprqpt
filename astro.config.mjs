@@ -10,9 +10,9 @@ export default defineConfig({
 	site: 'https://sprqpt.com',
 	integrations: [mdx(), sitemap(), svelte({ extensions: ['.svelte'] })],
 	experimental: {
-		svg: true
+		svg: true,
 	},
 	image: {
-		service: passthroughImageService()
-	}
+		service: passthroughImageService(),
+	},
 });

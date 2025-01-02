@@ -13,7 +13,7 @@
 	/** @type import('svelte/motion').Tweened<number> */
 	let x = new Tween(0.3, {
 		duration: 300,
-		easing: cubicOut
+		easing: cubicOut,
 	});
 
 	/** @type number */
@@ -35,7 +35,12 @@
 		}
 
 		timeout = window.requestAnimationFrame(() => {
-			x.set(Math.min(Math.max(e.clientX / container.clientWidth, k_min), k_max));
+			x.set(
+				Math.min(
+					Math.max(e.clientX / container.clientWidth, k_min),
+					k_max,
+				),
+			);
 			y = e.clientY / container.clientHeight;
 		});
 	};
@@ -48,14 +53,22 @@
 
 	const handle_orientation = (e) => {
 		const { beta, gamma } = e;
-		const is_landscape = window.matchMedia('(orientation: landscape)').matches;
+		const is_landscape = window.matchMedia(
+			'(orientation: landscape)',
+		).matches;
 		if (timeout) {
 			window.cancelAnimationFrame(timeout);
 		}
 
 		timeout = window.requestAnimationFrame(() => {
 			x.set(
-				Math.min(Math.max((is_landscape ? (gamma ?? 0) : (beta ?? 0)) / 90 + 0.5, k_min), k_max)
+				Math.min(
+					Math.max(
+						(is_landscape ? (gamma ?? 0) : (beta ?? 0)) / 90 + 0.5,
+						k_min,
+					),
+					k_max,
+				),
 			);
 		});
 	};
@@ -75,10 +88,16 @@
 			}
 		}
 		if (is_supported) {
-			window.addEventListener('deviceorientation', handle_orientation, true);
+			window.addEventListener(
+				'deviceorientation',
+				handle_orientation,
+				true,
+			);
 		}
 
-		return Promise.resolve(window.removeEventListener('deviceorientation', handle_orientation));
+		return Promise.resolve(
+			window.removeEventListener('deviceorientation', handle_orientation),
+		);
 	});
 </script>
 
@@ -125,7 +144,10 @@
 	$ar: calc(3 / 1);
 	$sheight: calc(100vw / $ar);
 	.scene {
-		background: radial-gradient(var(--nyan-bg-l, #005093), var(--nyan-bg-d, #002953));
+		background: radial-gradient(
+			var(--nyan-bg-l, #005093),
+			var(--nyan-bg-d, #002953)
+		);
 		width: 100%;
 		aspect-ratio: $ar;
 		position: relative;
@@ -136,7 +158,13 @@
 
 	.rainbow {
 		@function _gen2StopTile($c1, $c2) {
-			@return linear-gradient(to right, $c1 0%, $c1 50%, $c2 50%, $c2 100%);
+			@return linear-gradient(
+				to right,
+				$c1 0%,
+				$c1 50%,
+				$c2 50%,
+				$c2 100%
+			);
 		}
 
 		@function render_rainbow() {
@@ -144,7 +172,10 @@
 			@each $c in $colors {
 				$res: list.append(
 					$res,
-					(_gen2StopTile($c, transparent), _gen2StopTile(transparent, $c)),
+					(
+						_gen2StopTile($c, transparent),
+						_gen2StopTile(transparent, $c)
+					),
 					comma
 				);
 			}
@@ -167,7 +198,11 @@
 		transform: (
 			translate(
 				clamp(-40vw, calc(100vw * var(--x) - 50vw), 30vw),
-				clamp(calc($sheight * -0.2), calc($sheight * (var(--y) - 0.5)), calc($sheight * 0.2))
+				clamp(
+					calc($sheight * -0.2),
+					calc($sheight * (var(--y) - 0.5)),
+					calc($sheight * 0.2)
+				)
 			)
 		);
 		transition: transform 300ms cubic-bezier(0.29, 1.54, 0.68, 0.05);
@@ -190,7 +225,8 @@
 			background-size: $width_unit $height_unit;
 			background-repeat: repeat-x;
 
-			animation: calc(var(--speed, 0.5) * 2 * 300ms) step-end infinite rainbow;
+			animation: calc(var(--speed, 0.5) * 2 * 300ms) step-end infinite
+				rainbow;
 
 			@keyframes rainbow {
 				from,
@@ -230,7 +266,11 @@
 		.star:nth-child(#{$i}) {
 			left: calc(list.nth($star_trail, 1) + 30%);
 			top: list.nth($star_trail, 2);
-			animation: calc(var(--speed) * 0.5 * 2 * 1.3s) ease-in-out calc(1s / $i) infinite whoosh;
+			animation: calc(var(--speed) * 0.5 * 2 * 1.3s)
+				ease-in-out
+				calc(1s / $i)
+				infinite
+				whoosh;
 			&::after {
 				animation-delay: calc(1s / $i);
 			}
@@ -301,14 +341,22 @@
 					$temp: list.nth($poss, $i);
 					$transformed_poss: list.append(
 						$transformed_poss,
-						factor_position($i, list.nth($temp, 1), list.nth($temp, 2)),
+						factor_position(
+							$i,
+							list.nth($temp, 1),
+							list.nth($temp, 2)
+						),
 						comma
 					);
 				} @else {
 					@each $p in list.nth($poss, $i) {
 						$transformed_poss: list.append(
 							$transformed_poss,
-							factor_position($i, list.nth($p, 1), list.nth($p, 2)),
+							factor_position(
+								$i,
+								list.nth($p, 1),
+								list.nth($p, 2)
+							),
 							comma
 						);
 					}
@@ -324,7 +372,14 @@
 				(#{$w} 10%, #{$w} 10%, #{$w} 10%, #{$w} 10%),
 				(#{$dw} 10%, #{$dw} 10%, #{$w} 20%, #{$w} 20%),
 				(#{$w} 10%, #{$dw} 10%, #{$dw} 10%, #{$w} 20%, #{$w} 20%),
-				(#{$w} 10%, #{$w} 10%, #{$w} 10%, #{$w} 10%, #{$w} 10%, #{$w} 10%),
+				(
+					#{$w} 10%,
+					#{$w} 10%,
+					#{$w} 10%,
+					#{$w} 10%,
+					#{$w} 10%,
+					#{$w} 10%
+				),
 				(#{$w} 10%, #{$w} 10%, #{$w} 10%, #{$w} 10%)
 			);
 
@@ -367,7 +422,11 @@
 		left: 45%;
 		transform: translate(
 			clamp(-40vw, calc(100vw * var(--x) - 50vw), 30vw),
-			clamp(calc($sheight * -0.2), calc($sheight * (var(--y) - 0.5)), calc($sheight * 0.2))
+			clamp(
+				calc($sheight * -0.2),
+				calc($sheight * (var(--y) - 0.5)),
+				calc($sheight * 0.2)
+			)
 		);
 		transition: transform 300ms cubic-bezier(0.29, 1.54, 0.68, 0.05);
 		height: $cat_height;
