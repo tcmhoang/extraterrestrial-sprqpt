@@ -1,0 +1,63 @@
+---
+import { k_tab_routes } from '@/consts';
+---
+
+<div role="navigation">
+	<ul role="tablist">
+		{
+			k_tab_routes.map(({ link, label }) => (
+				<li role="presentation">
+					<a href={link} role="tab" aria-selected={Astro.url.pathname == link ? 'true' : null}>
+						<span>{label}</span>
+					</a>
+				</li>
+			))
+		}
+	</ul>
+</div>
+
+<style lang="scss">
+	div {
+		view-transition-name: nav;
+	}
+	ul {
+		display: grid;
+		width: 100%;
+		grid-auto-flow: column;
+		grid-auto-columns: 1fr;
+		align-items: center;
+		font-size: var(--step-0);
+		line-height: 2;
+	}
+	li {
+		display: block;
+	}
+	a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 700;
+		width: 100%;
+		height: 100%;
+		color: var(--subtext);
+
+		&:focus-visible,
+		&:hover {
+			background: var(--surface);
+			outline: 0;
+		}
+	}
+
+	span {
+		border-bottom: 4px solid transparent;
+	}
+
+	[aria-selected='true'] {
+		span {
+			color: var(--text);
+			text-shadow: 0 0.2rem 0.3rem var(--surface);
+			view-transition-name: tab-nav;
+			border-bottom: 4px solid var(--mauve);
+		}
+	}
+</style>

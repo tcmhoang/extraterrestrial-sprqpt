@@ -1,5 +1,14 @@
 ---
+import { build_title } from '@/consts';
 import Layout from 'layouts/DefaultWithHeader.astro';
+import FeedNavigation from '@/components/masters/FeedNavigation.astro';
 ---
 
-<Layout />
+<Layout>
+	<Fragment slot="additional_head">
+		<title>{build_title('Feed')}</title>
+		<meta name="description" content="Conrad Hoang's personal website" />
+	</Fragment>
+
+	<FeedNavigation />
+</Layout>

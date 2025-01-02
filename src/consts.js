@@ -84,6 +84,25 @@ export const k_default_header_props = {
 
 	summary: [
 		'On the mission to spice up the web, pixel by pixel ✨',
-		'Software Admiral, Inspiring Rubber Quack-tivist, Mayhem Mender, Bug Sleuth.'
+		'Software Admiral 🎖️, Inspiring Rubber Quack-tivist 🦆, Mayhem Mender 🩹, Bug Sleuth 🔍'
 	]
 };
+
+// Tab routes
+
+export const k_tab_routes = [
+	{
+		label: 'Feed',
+		link: `/`
+	},
+	{
+		label: 'About',
+		link: `/about`
+	},
+	{
+		label: 'Links',
+		link: `/links`
+	}
+];
+
+export const k_hostname = 'SPRQPT';
