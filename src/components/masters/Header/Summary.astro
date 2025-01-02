@@ -1,0 +1,29 @@
+---
+export type Props = {
+	summary: string[];
+};
+
+const { summary } = Astro.props;
+---
+
+<div class="summary {!(summaries.length) ? 'summary-comp' : ''}">
+	<slot name="header_summary">
+		{summary.map((c) => <p>{c}</p>)}
+	</slot>
+</div>
+
+<style lang="scss">
+	.summary {
+		line-height: 1.25;
+		& > * {
+			margin-bottom: 0.5rem;
+		}
+	}
+	.summary-comp {
+		--text: var(--subtext);
+		--yellow: var(--peach);
+		--badge: var(--step-0);
+		font-size: var(--step-1);
+		padding-bottom: 0.5rem;
+	}
+</style>

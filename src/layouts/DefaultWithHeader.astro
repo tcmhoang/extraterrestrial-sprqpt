@@ -3,6 +3,8 @@ import 'styles/default.css';
 import 'styles/default-transitions.css';
 import DefaultLayout from './Default.astro';
 import Header from 'components/masters/Header/Header.astro';
+import HeaderSummary from 'components/masters/Header/Summary.astro';
+import NameWithVerifiedBadge from 'components/masters/NameWithVerifiedBadge.svelte';
 import { k_banner_data, k_default_header_props } from '@/consts';
 
 export type Props = {
@@ -20,10 +22,14 @@ const { banner_data, summary, deets, heading } = Astro.props;
 	<Header
 		deets={deets ?? k_default_header_props.deets}
 		heading={heading}
-		summary={summary ?? k_default_header_props.summary}
 		banner_data={banner_data ?? k_banner_data}
 	>
-		<slot name="header_heading" slot="header_heading" />
+		<slot name="header_heading" slot="header_heading">
+			<NameWithVerifiedBadge slot="header_heading" />
+		</slot>
+		<slot name="header_summary" slot="header_summary">
+			<HeaderSummary summary={summary ?? k_default_header_props.summary} />
+		</slot>
 	</Header>
 
 	<slot />

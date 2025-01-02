@@ -7,10 +7,9 @@ export type Props = {
 	heading: string | undefined;
 	banner_data: BannerData;
 	deets: Detail[];
-	summary: string[] | undefined;
 };
 
-const { heading: mb_heading, banner_data, deets, summary: mb_summary } = Astro.props;
+const { heading: mb_heading, banner_data, deets } = Astro.props;
 ---
 
 <header>
@@ -41,11 +40,7 @@ const { heading: mb_heading, banner_data, deets, summary: mb_summary } = Astro.p
 			<slot name="header_heading"> {mb_heading ?? ''}</slot>
 		</h1>
 
-		<div class="summary {!(summary) ? 'summary-comp' : ''}">
-			<slot name="header_summary">
-				{(mb_summary ?? []).map((c) => <p>{c}</p>)}
-			</slot>
-		</div>
+		<slot name="header_summary" />
 
 		<span class="details">
 			{
@@ -124,13 +119,6 @@ const { heading: mb_heading, banner_data, deets, summary: mb_summary } = Astro.p
 		height: 1.25rem;
 	}
 
-	.summary {
-		line-height: 1.25;
-		& > * {
-			margin-bottom: 0.5rem;
-		}
-	}
-
 	a {
 		font-weight: bold;
 		color: color-mix(in hsl, var(--peach), black 20%);
@@ -138,13 +126,5 @@ const { heading: mb_heading, banner_data, deets, summary: mb_summary } = Astro.p
 			text-decoration: underline 4px;
 			text-underline-offset: 2px;
 		}
-	}
-
-	.summary-comp {
-		--text: var(--subtext);
-		--yellow: var(--peach);
-		--badge: var(--step-0);
-		font-size: var(--step-1);
-		padding-bottom: 0.5rem;
 	}
 </style>
