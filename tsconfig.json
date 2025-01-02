@@ -10,7 +10,8 @@
             "@styles/": ["./styles/*"],
             "@components/": ["./components/*"],
             "@layouts/": ["./layouts/*"],
-            "@assets/": ["./assets/*"]
+            "@assets/": ["./assets/*"],
+            "@content/": ["./content/*"]
         }
     }
 }

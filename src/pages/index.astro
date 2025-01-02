@@ -2,6 +2,11 @@
 import { build_title } from '@/consts';
 import Layout from 'layouts/DefaultWithHeader.astro';
 import FeedNavigation from '@/components/masters/FeedNavigation.astro';
+import { getCollection } from 'astro:content';
+
+const tweets = (await getCollection('tweet')).sort(
+	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <Layout>
@@ -11,4 +16,6 @@ import FeedNavigation from '@/components/masters/FeedNavigation.astro';
 	</Fragment>
 
 	<FeedNavigation />
+
+	{tweets.map(JSON.stringify)}
 </Layout>
