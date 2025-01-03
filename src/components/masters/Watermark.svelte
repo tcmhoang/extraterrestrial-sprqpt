@@ -24,6 +24,7 @@
 		transition: transform 300ms;
 		right: 0;
 		top: 50%;
+		z-index: 1;
 	}
 
 	.hide_seek {
