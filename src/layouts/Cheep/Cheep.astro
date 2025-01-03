@@ -1,0 +1,167 @@
+---
+import LinkIcon from 'components/icons/LinkIcon.svg';
+import PinIcon from 'components/icons/PinIcon.svg';
+import Chip from './Chip.astro';
+import Picture from 'astro/components/Picture.astro';
+import avatar from 'assets/me.jpeg';
+
+export type Props = {
+	date: Date;
+	title?: string;
+	emo?: string;
+	emodesc?: string;
+	author: string;
+	pinned: boolean;
+	id: string;
+};
+
+const {
+	date,
+	title: mb_title,
+	emo: mb_emo,
+	emodesc: mb_emo_desc,
+	author,
+	pinned,
+} = Astro.props;
+---
+
+<article>
+	{
+		pinned && (
+			<>
+				<span class="p-icon">
+					<PinIcon />
+				</span>
+				<span class="p-title">Pinned</span>{' '}
+			</>
+		)
+	}
+	<div class="avatar">
+		<a href="/" aria-label="Conrad's Feed">
+			<Picture
+				src={avatar}
+				alt="Author"
+				sizes="60px"
+				decoding="async"
+				loading="lazy"
+				class="img-ava"
+			/>
+		</a>
+		<div class="actions">
+			<a href="/cheeps/{id}" title="Permalink"><LinkIcon /></a>
+		</div>
+	</div>
+	<div class="content">
+		<div class="author">
+			<a href="/">{author}</a>
+			<span>•</span>
+			<time datetime={date.toUTCString()}
+				>{new Date(date).toDateString()}</time
+			>
+		</div>
+		<div>
+			{
+				mb_emo && mb_emo_desc && (
+					<Chip content={mb_emo_desc} emoji={mb_emo} />
+				)
+			}
+		</div>
+		<div class="content">
+			{mb_title && <h2>{mb_title}</h2>}
+
+			<slot />
+		</div>
+	</div>
+</article>
+
+<style lang="scss">
+	article {
+		display: grid;
+		width: 100%;
+		grid-template-columns: auto 1fr;
+		gap: 0.5rem;
+		padding: 1rem;
+		border-radius: 0.5rem;
+
+		&:hover {
+			background-color: var(--surface);
+		}
+	}
+
+	h2 {
+		font-size: var(--step-2);
+	}
+
+	%firstGrid {
+		display: flex;
+		flex-flow: column nowrap;
+		gap: 0.5rem;
+		a {
+			width: 2.5rem;
+			height: 2.5rem;
+		}
+	}
+
+	.avatar {
+		@extend %firstGrid;
+		.img-ava {
+			width: 100%;
+			height: auto;
+			border-radius: 2.5rem;
+		}
+	}
+
+	.actions {
+		@extend %firstGrid;
+		a {
+			border-radius: 0.25rem;
+			color: var(--text);
+			padding: 0.5rem;
+
+			&:hover {
+				color: var(--maroon);
+				background-color: var(--p-surface);
+			}
+		}
+	}
+
+	.content {
+		display: grid;
+		row-gap: 0.25rem;
+		line-height: 1.5;
+	}
+
+	.author {
+		display: flex;
+		column-gap: 0.5rem;
+		align-items: center;
+		color: var(--subtext);
+		font-size: var(--step--1);
+	}
+
+	a {
+		color: var(--text);
+		font-weight: bold;
+		font-size: var(--step-0);
+		&:hover {
+			text-decoration: var(--peach) double underline 1px;
+			text-underline-offset: 2px;
+			text-decoration-skip-ink: auto;
+		}
+	}
+
+	time {
+		font-size: var(--step--2);
+	}
+
+	.p-icon {
+		width: 1rem;
+		height: 1rem;
+		justify-self: end;
+	}
+
+	.p-title {
+		color: var(--subtext);
+		font-size: var(--step--2);
+	}
+</style>

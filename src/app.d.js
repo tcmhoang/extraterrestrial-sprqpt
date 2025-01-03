@@ -1,6 +1,6 @@
 /** @typedef {import('svelte').Component} Component */
 /** @typedef {import('astro').ImageMetadata} ImageMetadata */
-/** @typedef {import('astro').AsyncRendererComponentFn} AstroComponent */
+/** @typedef {import('astro').AsyncRendererComponentFn<unknown>} AstroComponent */
 
 /**
  * @typedef ViewTransitionAPI
@@ -35,9 +35,15 @@
  * Contains information for constructing the banner image instance
  *
  * @typedef BannerImageData
- * @property {Promise<{ default: ImageMetadata }>} hero_url - Imported image for
- *   the hero banner
+ * @property {ImageData} hero_url - Imported image for the hero banner
  * @property {string} hero_alt - Alt text
+ */
+
+/**
+ * Local imported image via Astro
+ *
+ * @typedef {Promise<{ default: ImageMetadata }>} } ImageData - Imported image
+ *   for the hero banner
  */
 
 /**

@@ -2,10 +2,18 @@
 import { build_title } from '@/consts';
 import Layout from 'layouts/DefaultWithHeader.astro';
 import FeedNavigation from '@/components/masters/FeedNavigation.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import Cheep from '@/layouts/Cheep/Cheep.astro';
 
 const tweets = (await getCollection('tweet')).sort(
 	(a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+
+const tweet_w_comps = await Promise.all(
+	tweets.map(async (tweet) => ({
+		...tweet,
+		Component: (await render(tweet)).Content,
+	})),
 );
 ---
 
@@ -17,5 +25,21 @@ const tweets = (await getCollection('tweet')).sort(
 
 	<FeedNavigation />
 
-	{tweets.map(JSON.stringify)}
+	<div>
+		{
+			tweet_w_comps.map(({ id, data, Component }) => (
+				<Cheep id={id} {...data}>
+					<Component />
+				</Cheep>
+			))
+		}
+	</div>
 </Layout>
+
+<style>
+	div {
+		display: flex;
+		gap: 1rem;
+		flex-flow: column nowrap;
+	}
+</style>

@@ -3,10 +3,10 @@ created: '2024-06-30'
 date: '2024-07-07'
 title: 'Typescript shenanigans'
 excerpt: |
-  There's a reason why everybody don't like Typescript
+    There's a reason why everybody don't like Typescript
 layout: blog
 tags:
-  - Web development
+    - Web development
 ---
 
 {% overview %}
@@ -41,7 +41,7 @@ argument, for example.
 
 ```ts
 function foo(a: number): number {
-	return 3;
+    return 3;
 }
 ```
 
@@ -49,14 +49,14 @@ But is the `a` argument always the `number` type?
 
 ```ts
 function foo(a: number): number {
-	return 3;
+    return 3;
 }
 
 // Let's assume that this function will go out to the internet
 // to get that value
 async function fakeFetch(): Promise<number> {
-	const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
-	return (await res) as number;
+    const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
+    return (await res) as number;
 }
 
 const badVariable = await fakeFetch();
@@ -73,7 +73,7 @@ But if our `foo` function uses a method belong to `Number` class like:
 
 ```ts
 function foo(a: number): string {
-	return a.toFixed().toUpperCase();
+    return a.toFixed().toUpperCase();
 }
 ```
 
@@ -125,55 +125,55 @@ your head is probably a try-catch block. But where do we put it?
 
 - Around the function call
 
-  ```ts
-  try {
-  	console.log(foo(badVariable));
-  } catch (e) {
-  	console.err('failed to call foo');
-  	rethrow;
-  }
-  ```
+    ```ts
+    try {
+        console.log(foo(badVariable));
+    } catch (e) {
+        console.err('failed to call foo');
+        rethrow;
+    }
+    ```
 
-  Seems okay, but every time we call a function, we have to add more 5
-  lines to the code base? Yuck!
+    Seems okay, but every time we call a function, we have to add more 5
+    lines to the code base? Yuck!
 
 - Inside the function
 
-  ```ts
-  function foo(a: number): string {
-  	try {
-  		return a.toFixed().toUpperCase();
-  	} catch (e) {
-  		console.err('failed inside foo');
-  		rethrow;
-  	}
-  }
-  ```
+    ```ts
+    function foo(a: number): string {
+        try {
+            return a.toFixed().toUpperCase();
+        } catch (e) {
+            console.err('failed inside foo');
+            rethrow;
+        }
+    }
+    ```
 
-  Talk about paranoid. Hard-pass!
+    Talk about paranoid. Hard-pass!
 
 - After doing the type assertion with `as`
 
-  ```ts
-  async function fakeFetch(): Promise<number> {
-  	const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
+    ```ts
+    async function fakeFetch(): Promise<number> {
+        const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
 
-  	const val = (await res) as number;
-  	try {
-  		val.toFixed();
-  		// and for other properties in `Number` class
-  		return val;
-  	} catch (e) {
-  		console.err('returned type is not a number instance');
-  		rethrow;
-  	}
-  }
-  ```
+        const val = (await res) as number;
+        try {
+            val.toFixed();
+            // and for other properties in `Number` class
+            return val;
+        } catch (e) {
+            console.err('returned type is not a number instance');
+            rethrow;
+        }
+    }
+    ```
 
-  For this to work, we have to call the actual property that get accessed
-  by the callee to make sure it is _indeed_ a `number` instance and not
-  others due to the effect of
-  [duck typing](https://en.wikipedia.org/wiki/Duck_typing).
+    For this to work, we have to call the actual property that get accessed
+    by the callee to make sure it is _indeed_ a `number` instance and not
+    others due to the effect of
+    [duck typing](https://en.wikipedia.org/wiki/Duck_typing).
 
 If we want to have more grain control, we also have to define our own
 `Exception` types. That can be a real drag and cumbersome task
@@ -197,15 +197,15 @@ It'll go like this:
 
 ```ts
 function assertIsNumber(value: unknown): asserts value is number {
-	if (typeof value != 'number') {
-		throw new Error(); // assertion error
-	}
+    if (typeof value != 'number') {
+        throw new Error(); // assertion error
+    }
 }
 
 function foo(a: number): string {
-	assertIsNumber(a);
-	// After that, a is a true number 😀
-	return a.toFixed().toUpperCase();
+    assertIsNumber(a);
+    // After that, a is a true number 😀
+    return a.toFixed().toUpperCase();
 }
 ```
 
@@ -226,8 +226,8 @@ if you think the assertion functions are too long.
 
 ```ts
 function foo(a: number): string | undefined {
-	if (typeof a != 'number') return undefined;
-	return a.toFixed().toUpperCase();
+    if (typeof a != 'number') return undefined;
+    return a.toFixed().toUpperCase();
 }
 ```
 
@@ -282,36 +282,36 @@ make it an instance type
 ```ts
 // from this
 type UserPayload = {
-	name?: string;
+    name?: string;
 };
 
 // to this
 
 class User {
-	private static kPlaceHolderName = 'NOT_FOUND';
-	constructor(private _name?: string) {
-		super();
-		if (this._name == User.kPlaceHolderName) {
-			this._name = undefined;
-		}
-	}
+    private static kPlaceHolderName = 'NOT_FOUND';
+    constructor(private _name?: string) {
+        super();
+        if (this._name == User.kPlaceHolderName) {
+            this._name = undefined;
+        }
+    }
 
-	get name(): string {
-		return name ?? User.kPlaceHolderName;
-	}
+    get name(): string {
+        return name ?? User.kPlaceHolderName;
+    }
 
-	set name(value: string) {
-		if (
-			value == User.kPlaceHolderName ||
-			!value.trim().length ||
-			!typeof value == 'string' ||
-			value == this._name
-		) {
-			return;
-		}
+    set name(value: string) {
+        if (
+            value == User.kPlaceHolderName ||
+            !value.trim().length ||
+            !typeof value == 'string' ||
+            value == this._name
+        ) {
+            return;
+        }
 
-		this._name = value;
-	}
+        this._name = value;
+    }
 }
 ```
 
@@ -328,50 +328,50 @@ it vice versa without manually passing the positional arguments to it.
 
 ```ts
 class User {
-	private static kPlaceHolderName = 'NOT_FOUND';
+    private static kPlaceHolderName = 'NOT_FOUND';
 
-	// Notice, contructor now private
-	private constructor(private _name?: string) {
-		super();
-		if (this._name == User.kPlaceHolderName) {
-			this._name = undefined;
-		}
-	}
+    // Notice, contructor now private
+    private constructor(private _name?: string) {
+        super();
+        if (this._name == User.kPlaceHolderName) {
+            this._name = undefined;
+        }
+    }
 
-	static promote(userPayload: UserPayload): User {
-		return User.parse(userPayload);
-	}
+    static promote(userPayload: UserPayload): User {
+        return User.parse(userPayload);
+    }
 
-	static parse(raw: unknown): User {
-		if (!typeof raw != 'object' || (!'name') in raw)
-			throw new Error(`
+    static parse(raw: unknown): User {
+        if (!typeof raw != 'object' || (!'name') in raw)
+            throw new Error(`
         Invalid Argument ${raw}`);
 
-		return new User(raw.name);
-	}
+        return new User(raw.name);
+    }
 
-	get name(): string {
-		return name ?? User.kPlaceHolderName;
-	}
+    get name(): string {
+        return name ?? User.kPlaceHolderName;
+    }
 
-	set name(value: string) {
-		if (
-			value == User.kPlaceHolderName ||
-			!value.trim().length ||
-			!typeof value == 'string' ||
-			value == this._name
-		) {
-			return;
-		}
+    set name(value: string) {
+        if (
+            value == User.kPlaceHolderName ||
+            !value.trim().length ||
+            !typeof value == 'string' ||
+            value == this._name
+        ) {
+            return;
+        }
 
-		this._name = value;
-	}
+        this._name = value;
+    }
 
-	to(): UserPayload {
-		return {
-			...(this._user ? { name: this._user } : {})
-		};
-	}
+    to(): UserPayload {
+        return {
+            ...(this._user ? { name: this._user } : {}),
+        };
+    }
 }
 ```
 
@@ -388,60 +388,60 @@ Pretty cool huh? We can make it even better by integrating the
 import z from 'zod';
 
 class User {
-	private static kPlaceHolderName = 'NOT_FOUND';
+    private static kPlaceHolderName = 'NOT_FOUND';
 
-	private constructor(private _name?: string) {
-		super();
-		if (this._name == User.kPlaceHolderName) {
-			this._name = undefined;
-		}
-	}
+    private constructor(private _name?: string) {
+        super();
+        if (this._name == User.kPlaceHolderName) {
+            this._name = undefined;
+        }
+    }
 
-	// We introduce user's schema here
-	static schema = z.object({
-		name: z
-			.string()
-			.min(1)
-			.refine((val) => val != User.kPlaceHolderName, {
-				message: 'User cannot have the placeholder as name'
-			})
-	});
+    // We introduce user's schema here
+    static schema = z.object({
+        name: z
+            .string()
+            .min(1)
+            .refine((val) => val != User.kPlaceHolderName, {
+                message: 'User cannot have the placeholder as name',
+            }),
+    });
 
-	static promote(userPayload: UserPayload): User {
-		return User.parse(userPayload);
-	}
+    static promote(userPayload: UserPayload): User {
+        return User.parse(userPayload);
+    }
 
-	static parse(raw: unknown): User {
-		const parsed = User.schema.safeParse(raw);
-		if (!parsed.success)
-			throw new Error(`
+    static parse(raw: unknown): User {
+        const parsed = User.schema.safeParse(raw);
+        if (!parsed.success)
+            throw new Error(`
         Invalid Argument ${raw}, parsed.error.format()`);
 
-		return new User(parsed.name);
-	}
+        return new User(parsed.name);
+    }
 
-	get name(): string {
-		return name ?? User.kPlaceHolderName;
-	}
+    get name(): string {
+        return name ?? User.kPlaceHolderName;
+    }
 
-	set name(value: string) {
-		// Use the schema in the setter validation
-		if (
-			value == User.kPlaceHolderName ||
-			value == this._name ||
-			!User.schema.shape.name.safeParsed(value).sucess
-		) {
-			return;
-		}
+    set name(value: string) {
+        // Use the schema in the setter validation
+        if (
+            value == User.kPlaceHolderName ||
+            value == this._name ||
+            !User.schema.shape.name.safeParsed(value).sucess
+        ) {
+            return;
+        }
 
-		this._name = value;
-	}
+        this._name = value;
+    }
 
-	to(): UserPayload {
-		return {
-			...(this._user ? { name: this._user } : {})
-		};
-	}
+    to(): UserPayload {
+        return {
+            ...(this._user ? { name: this._user } : {}),
+        };
+    }
 }
 ```
 

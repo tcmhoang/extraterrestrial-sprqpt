@@ -11,6 +11,7 @@ const tweet = defineCollection({
 		title: z.string().optional(),
 		description: z.string(),
 		pinned: z.boolean().optional().default(false),
+		author: z.string().optional().default('Conrad'),
 	}),
 });
 
