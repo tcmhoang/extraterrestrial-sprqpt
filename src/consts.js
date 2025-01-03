@@ -58,10 +58,10 @@ import BirthdayIcon from 'components/icons/BirthdayIcon.svg';
 import BlogIcon from 'components/icons/BlogIcon.svg';
 import PositionLocationIcon from 'components/icons/PositionLocationIcon.svg';
 
-export const hostname = 'SPRQPT';
+export const k_hostname = 'SPRQPT';
 
 export const build_title = (/** @type string */ title) =>
-	`${title} • ${hostname}`;
+	`${title} • ${k_hostname}`;
 
 export const k_default_header_props = {
 	deets: [
@@ -91,19 +91,7 @@ export const k_default_header_props = {
 
 // Tab routes
 
-export const k_tab_routes = [
-	{
-		label: 'Feed',
-		link: `/`,
-	},
-	{
-		label: 'About',
-		link: `/about`,
-	},
-	{
-		label: 'Links',
-		link: `/links`,
-	},
-];
-
-export const k_hostname = 'SPRQPT';
+export const k_home_tab_data = {
+	label: 'Feed',
+	link: `/`,
+};

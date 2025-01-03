@@ -1,8 +1,8 @@
 ---
-import BaseLayout from 'layouts/Base.astro';
+import DefaultLayout from 'layouts/Default.astro';
 ---
 
-<BaseLayout>
+<DefaultLayout>
 	<title slot="additional_head">Babe, You lost!</title>
 	<main>
 		<h2>404</h2>
@@ -10,7 +10,7 @@ import BaseLayout from 'layouts/Base.astro';
 			><strong>Oops!</strong> {Astro.url.pathname} is gone missing?!</span
 		>
 	</main>
-</BaseLayout>
+</DefaultLayout>
 
 <style>
 	main {

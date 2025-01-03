@@ -7,6 +7,7 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
+        "type": "astro sync",
         "format": "prettier . --write --cache --list-different",
         "check:astro": "astro check",
         "check:svelte": "svelte-check --tsconfig ./tsconfig.json"

@@ -1,0 +1,22 @@
+---
+import { build_title } from '@/consts';
+import Layout from 'layouts/DefaultWithHeader.astro';
+import FeedNavigation from '@/components/masters/FeedNavigation.astro';
+
+export type Props = {
+	title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<Layout>
+	<Fragment slot="additional_head">
+		<title>{build_title(title)}</title>
+		<meta name="description" content="Conrad Hoang's personal website" />
+	</Fragment>
+
+	<FeedNavigation />
+
+	<slot />
+</Layout>

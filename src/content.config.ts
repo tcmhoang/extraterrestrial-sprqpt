@@ -3,7 +3,6 @@ import { defineCollection, z } from 'astro:content';
 
 const tweet = defineCollection({
 	loader: glob({ base: './src/content/tweet', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
 	schema: z.object({
 		date: z.coerce.date(),
 		emo: z.string(),
@@ -15,4 +14,14 @@ const tweet = defineCollection({
 	}),
 });
 
-export const collections = { tweet };
+const tab = defineCollection({
+	loader: glob({ base: './src/content/tab', pattern: '**/*.{md,mdx}' }),
+	schema: z.object({
+		date: z.coerce.date(),
+		title: z.string(),
+		created: z.coerce.date(),
+		excerpt: z.string(),
+	}),
+});
+
+export const collections = { tweet, tab };

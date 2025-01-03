@@ -1,11 +1,22 @@
 ---
-import { k_tab_routes } from '@/consts';
+import { k_home_tab_data } from '@/consts';
+import { getCollection } from 'astro:content';
+
+const tabs = [
+	k_home_tab_data,
+	...(await getCollection('tab'))
+		.toSorted((t1, t2) => t1.id.localeCompare(t2.id))
+		.map((t) => ({
+			link: `/${t.id.toLowerCase()}`,
+			label: t.id.at(0)?.toUpperCase() + t.id.slice(1),
+		})),
+];
 ---
 
 <div role="navigation">
 	<ul role="tablist">
 		{
-			k_tab_routes.map(({ link, label }) => (
+			tabs.map(({ link, label }) => (
 				<li role="presentation">
 					<a
 						href={link}

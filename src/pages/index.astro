@@ -1,7 +1,5 @@
 ---
-import { build_title } from '@/consts';
-import Layout from 'layouts/DefaultWithHeader.astro';
-import FeedNavigation from '@/components/masters/FeedNavigation.astro';
+import Layout from 'layouts/Tab.astro';
 import { getCollection, render } from 'astro:content';
 import Cheep from '@/layouts/Cheep/Cheep.astro';
 
@@ -17,14 +15,7 @@ const tweet_w_comps = await Promise.all(
 );
 ---
 
-<Layout>
-	<Fragment slot="additional_head">
-		<title>{build_title('Feed')}</title>
-		<meta name="description" content="Conrad Hoang's personal website" />
-	</Fragment>
-
-	<FeedNavigation />
-
+<Layout title="Feed">
 	<div>
 		{
 			tweet_w_comps.map(({ id, data, Component }) => (

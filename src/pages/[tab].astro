@@ -1,0 +1,26 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from 'layouts/Tab.astro';
+import ContentLayout from 'layouts/Content.astro';
+import { render } from 'astro:content';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+	const tabs = await getCollection('tab');
+	return tabs.map((tab) => ({
+		params: { tab: tab.id },
+		props: tab,
+	}));
+}
+type Props = CollectionEntry<'tab'>;
+
+const tab = Astro.props;
+const { Content } = await render(tab);
+---
+
+<Layout title="tab.data.title">
+	<ContentLayout date={tab.data.date}>
+		<Content />
+	</ContentLayout>
+</Layout>

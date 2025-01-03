@@ -1,0 +1,23 @@
+---
+export type Props = {
+	date: Date;
+};
+
+const { date } = Astro.props;
+
+// TODO: Optimize SEO
+---
+
+<div>
+	<slot />
+
+	<small>
+		Updated on {date.toDateString()}
+	</small>
+</div>
+
+<style>
+	div {
+		padding: 0 1rem;
+	}
+</style>
