@@ -1,0 +1,33 @@
+---
+import { k_links } from '@/consts';
+---
+
+<div>
+	{
+		k_links.map(({ content, link, icon: Icon }) => (
+			<a href={link} target="_blank">
+				<Icon />
+				{content}
+			</a>
+		))
+	}
+</div>
+
+<style lang="scss">
+	div {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 3.5rem;
+	}
+
+	a {
+		padding: 1.25rem;
+		color: var(--text);
+		border-radius: 1rem;
+
+		&:hover {
+			color: var(--maroon);
+			background-color: var(--surface);
+		}
+	}
+</style>

@@ -95,3 +95,32 @@ export const k_home_tab_data = {
 	label: 'Feed',
 	link: `/`,
 };
+
+// Link me!
+import GithubIcon from 'components/icons/GithubIcon.svg';
+import KeybaseIcon from 'components/icons/KeybaseIcon.svg';
+import ResumeIcon from 'components/icons/ResumeIcon.svg';
+import RssIcon from 'components/icons/RssIcon.svg';
+import ScheduleIcon from 'components/icons/ScheduleIcon.svg';
+import WebsiteIcon from 'components/icons/WebsiteIcon.svg';
+
+export const k_links = [
+	{ content: 'Website', link: '/', icon: WebsiteIcon },
+	{ content: 'RSS', link: '/rss.xml', icon: RssIcon },
+	{ content: 'Resumé', link: '/resume', icon: ResumeIcon },
+	{
+		content: 'Keybase',
+		link: 'https://keybase.io/tcmhoang',
+		icon: KeybaseIcon,
+	},
+	{
+		content: 'Github',
+		link: 'https://github.com/tcmhoang',
+		icon: GithubIcon,
+	},
+	{
+		content: 'Schedule a call',
+		link: 'https://calendly.com/tcmhoang/30min',
+		icon: ScheduleIcon,
+	},
+];
