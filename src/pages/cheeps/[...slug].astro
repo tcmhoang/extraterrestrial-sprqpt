@@ -1,0 +1,46 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Layout from 'layouts/Default.astro';
+import { render } from 'astro:content';
+import { build_title } from '@/consts';
+import Cheep from 'layouts/Cheep/Cheep.astro';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+	const tweets = await getCollection('tweet');
+	return tweets.map((tweet) => ({
+		params: { slug: tweet.id },
+		props: tweet,
+	}));
+}
+type Props = CollectionEntry<'tweet'>;
+
+const tweet = Astro.props;
+const { Content } = await render(tweet);
+---
+
+<Layout>
+	<title slot="additional_head">{build_title(tweet.id)}</title>
+
+	<div class="container">
+		<div class="card">
+			<Cheep {...tweet.data} id={tweet.id} pinned={false}>
+				<Content />
+			</Cheep>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	.container {
+		display: flex;
+		height: 75vh;
+		justify-items: center;
+		align-items: center;
+	}
+	.card {
+		background-color: var(--surface);
+		border-radius: 0.5rem;
+	}
+</style>

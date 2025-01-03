@@ -22,6 +22,7 @@ const {
 	emodesc: mb_emo_desc,
 	author,
 	pinned,
+	id,
 } = Astro.props;
 ---
 
@@ -48,7 +49,7 @@ const {
 			/>
 		</a>
 		<div class="actions">
-			<a href="/cheeps/{id}" title="Permalink"><LinkIcon /></a>
+			<a href={`/cheeps/${id}`} title="Permalink"><LinkIcon /></a>
 		</div>
 	</div>
 	<div class="content">
