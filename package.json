@@ -13,6 +13,7 @@
         "check:svelte": "svelte-check --tsconfig ./tsconfig.json"
     },
     "devDependencies": {
+        "@astrojs/markdoc": "^0.12.4",
         "@astrojs/mdx": "^4.0.3",
         "@astrojs/rss": "^4.0.10",
         "@astrojs/sitemap": "^3.2.1",
