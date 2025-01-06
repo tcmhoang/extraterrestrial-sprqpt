@@ -1,8 +1,8 @@
 <script>
-	import { onMount } from 'svelte';
 	import Cat from './Cat.svelte';
 	import { Tween } from 'svelte/motion';
 	import { cubicOut } from 'svelte/easing';
+	import { onMount } from 'svelte';
 
 	/** @type number */
 	let timeout = $state();

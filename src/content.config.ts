@@ -24,4 +24,14 @@ const tab = defineCollection({
 	}),
 });
 
-export const collections = { tweet, tab };
+const master = defineCollection({
+	loader: glob({ base: './src/content/', pattern: '*.{md,mdx,mdoc}' }),
+	schema: z.object({
+		date: z.coerce.date(),
+		title: z.string(),
+		created: z.coerce.date(),
+		excerpt: z.string(),
+	}),
+});
+
+export const collections = { tweet, tab, master };

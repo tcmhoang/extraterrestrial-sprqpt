@@ -1,0 +1,75 @@
+---
+import ProtectedLink from './ProtectedLink.svelte';
+export type Props = {
+	full_name: string;
+	title: string;
+	// infos has format label, title, href
+	infos: string[];
+};
+
+const { full_name, title, infos } = Astro.props;
+
+const triplets = [...Array(Math.floor(infos.length / 3)).keys()]
+	.map((_, i) => i * 3)
+	.map((i) => [...Array(3).keys()].map((_, ip) => infos[i + ip]));
+---
+
+<div class="cv-hero">
+	<div class="cv-header">
+		<h1>{full_name}</h1>
+		<h2>{title}</h2>
+	</div>
+	<dl>
+		{
+			triplets.map(([label, title, href]) => (
+				<>
+					<dt>{label}</dt>
+					<dd>
+						<ProtectedLink title={title} href={href} client:load />
+					</dd>
+				</>
+			))
+		}
+	</dl>
+</div>
+
+<style>
+	.cv-hero {
+		display: grid;
+	}
+
+	h2 {
+		color: var(--subtext);
+		font-weight: normal;
+	}
+
+	dl {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		grid-column-gap: 0.75rem;
+	}
+
+	@media screen and (min-width: 730px) {
+		.cv_hero {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		dl {
+			grid-auto-flow: dense;
+			grid-template-columns: 1fr auto;
+			align-items: center;
+		}
+
+		dd,
+		dt {
+			justify-self: end;
+		}
+
+		dd {
+			grid-column: 0 / span 1;
+		}
+		dt {
+			grid-column: 2 / span 1;
+		}
+	}
+</style>

@@ -1,0 +1,23 @@
+---
+import { getEntry } from 'astro:content';
+import ContentLayout from 'layouts/Content.astro';
+import { render } from 'astro:content';
+
+const mb_entry = await getEntry('master', 'resume');
+
+const mb_rendered_res = mb_entry && (await render(mb_entry));
+
+const MbContent = mb_rendered_res && mb_rendered_res.Content;
+---
+
+{
+	mb_entry && mb_rendered_res && MbContent && (
+		<ContentLayout
+			date={mb_entry.data.date}
+			title={mb_entry.data.title}
+			description="Conrad Hoang's résumé"
+		>
+			<MbContent />
+		</ContentLayout>
+	)
+}

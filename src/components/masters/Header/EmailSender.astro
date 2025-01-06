@@ -1,29 +1,39 @@
-<a href="conrad@sprqpt.com">
-	Contact <svg
-		role="img"
-		aria-hidden="true"
-		xmlns="http://www.w3.org/2000/svg"
-		viewBox="96.3 -4.7 45.1 46.2"
-	>
-		<title>Contact me!</title>
-		<path
-			id="env-paper"
-			d="M135.8,34.2h-33.9c-1.3,0-2.4-1.1-2.4-2.4V0.7c0-1.3,1.1-2.4,2.4-2.4h33.9
+---
+import ProtectedLink from 'components/mdoc/ProtectedLink.svelte';
+---
+
+<ProtectedLink
+	href="conrad@sprqpt.com"
+	title="Hit me up via email here!"
+	client:load
+>
+	<div class="email-sender">
+		Contact <svg
+			role="img"
+			aria-hidden="true"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="96.3 -4.7 45.1 46.2"
+		>
+			<title>Contact me!</title>
+			<path
+				id="env-paper"
+				d="M135.8,34.2h-33.9c-1.3,0-2.4-1.1-2.4-2.4V0.7c0-1.3,1.1-2.4,2.4-2.4h33.9
 	c1.3,0,2.4,1.1,2.4,2.4v31.1C138.1,33.1,137.1,34.2,135.8,34.2z"
-		></path>
-		<path
-			d="M97.6,11.1c-0.6,0.5-1.3,1.5-1.3,2.4v24.9c0,1.7,1.4,3.1,3.1,3.1h38.8c0.8,0,1.4-0.3,2-0.7
+			></path>
+			<path
+				d="M97.6,11.1c-0.6,0.5-1.3,1.5-1.3,2.4v24.9c0,1.7,1.4,3.1,3.1,3.1h38.8c0.8,0,1.4-0.3,2-0.7
 	C137.1,38.7,97.6,11.1,97.6,11.1z"
-		></path>
-		<path
-			d="M140.3,11.2c-5.4,3.7-21.4,14.8-21.4,14.8l0,0c0.2,0.1,18.2,12.7,21.3,14.8c0.7-0.6,1.2-1.4,1.2-2.3v-25
+			></path>
+			<path
+				d="M140.3,11.2c-5.4,3.7-21.4,14.8-21.4,14.8l0,0c0.2,0.1,18.2,12.7,21.3,14.8c0.7-0.6,1.2-1.4,1.2-2.3v-25
 	C141.3,12.6,140.9,11.8,140.3,11.2z"
-		></path>
-	</svg>
-</a>
+			></path>
+		</svg>
+	</div>
+</ProtectedLink>
 
 <style lang="scss">
-	a {
+	.email-sender {
 		display: inline-flex;
 		column-gap: 0.25rem;
 		align-items: center;
