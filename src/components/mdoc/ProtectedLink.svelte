@@ -3,24 +3,19 @@
 
 	let { href, title = '', children } = $props();
 
-	const encrypted = '[protected info]';
-
-	/** @type HTMLAnchorElement */
-	let link;
+	let obsecured_href = $state('/');
+	let obsecured_title = $state('[protected info]');
 
 	onMount(() => {
-		link.acc.href = href;
-		link.title = title;
-		if (!children) {
-			link.textContent = title;
-		}
+		obsecured_href = href;
+		obsecured_title = title;
 	});
 </script>
 
-<a bind:this={link} href="/" title={encrypted}>
+<a href={obsecured_href} title={obsecured_title}>
 	{#if children}
 		{@render children()}
 	{:else}
-		{encrypted}
+		{obsecured_title}
 	{/if}
 </a>
