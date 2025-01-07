@@ -1,7 +1,8 @@
 ---
 import { getEntry } from 'astro:content';
-import ContentLayout from 'layouts/Content.astro';
+import BaseLayout from 'layouts/Base.astro';
 import { render } from 'astro:content';
+import { build_title } from '@/consts';
 
 const mb_entry = await getEntry('master', 'resume');
 
@@ -12,12 +13,30 @@ const MbContent = mb_rendered_res && mb_rendered_res.Content;
 
 {
 	mb_entry && mb_rendered_res && MbContent && (
-		<ContentLayout
-			date={mb_entry.data.date}
-			title={mb_entry.data.title}
-			description="Conrad Hoang's résumé"
-		>
-			<MbContent />
-		</ContentLayout>
+		<BaseLayout>
+			<Fragment slot="additional_head">
+				<title>{build_title(mb_entry.data.title)}</title>
+				<meta name="description" content="Conrad Hoang's résumé" />
+			</Fragment>
+
+			<div>
+				<MbContent />
+				<small>Updated on {mb_entry.data.date.toDateString()}</small>
+			</div>
+		</BaseLayout>
 	)
 }
+<style>
+	div {
+		max-width: calc(var(--width) * 1.3);
+		margin: auto;
+		padding: 0 1rem;
+		font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+		--marker: var(--mauve);
+		--heading-color: var(--yellow);
+	}
+	small {
+		display: flex;
+		justify-content: center;
+	}
+</style>
