@@ -25,7 +25,7 @@ const tab = defineCollection({
 });
 
 const master = defineCollection({
-	loader: glob({ base: './src/content/', pattern: '*.{md,mdx,mdoc}' }),
+	loader: glob({ base: './src/content/', pattern: '*.{md,mdx}' }),
 	schema: z.object({
 		date: z.coerce.date(),
 		title: z.string(),
