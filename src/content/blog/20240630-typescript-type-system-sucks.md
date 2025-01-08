@@ -343,9 +343,10 @@ class User {
     }
 
     static parse(raw: unknown): User {
-        if (!typeof raw != 'object' || (!'name') in raw)
+        if (!typeof raw != 'object' || (!'name') in raw) {
             throw new Error(`
         Invalid Argument ${raw}`);
+        }
 
         return new User(raw.name);
     }
@@ -413,9 +414,10 @@ class User {
 
     static parse(raw: unknown): User {
         const parsed = User.schema.safeParse(raw);
-        if (!parsed.success)
+        if (!parsed.success) {
             throw new Error(`
         Invalid Argument ${raw}, parsed.error.format()`);
+        }
 
         return new User(parsed.name);
     }
@@ -463,7 +465,7 @@ Of course, the class must follow the identity law so that we can keep
 peace of mind that these work correctly without worrying much. For this
 `User` class, it would be:
 
-`User.parse(user.to()) = User.promote(user.to()) = user` [^1]
+`User.parse(user.to()) = User.promote(user.to()) = user`[^1]
 
 It takes some time to define all this stuff upfront. Trust me, it's
 worth it, no cap. It saves me a ton of time in debugging and just

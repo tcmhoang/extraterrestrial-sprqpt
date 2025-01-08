@@ -1,0 +1,65 @@
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-size: var(--step-#{5 - $i});
+	}
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	clear: both;
+	font-weight: bold;
+	margin-bottom: 0.5rem;
+	display: flex;
+	column-gap: 0.5rem;
+	align-items: center;
+	margin-top: 1rem;
+	scroll-margin-top: 4rem;
+}
+
+hr {
+	width: 50%;
+	margin: 2rem auto;
+	border-width: 2px;
+}
+hr {
+	width: 50%;
+	margin: 2rem auto;
+	border-width: 2px;
+}
+
+a {
+	color: color-mix(in hsl, var(--yellow), black 25%);
+	font-weight: bold;
+	&:hover {
+		text-decoration: underline 4px;
+		text-underline-offset: 2px;
+	}
+}
+ul,
+ol {
+	display: flex;
+	flex-flow: column wrap;
+	gap: 0.375rem;
+	padding-left: 2rem;
+	margin-bottom: 1.5rem;
+}
+
+ol {
+	list-style: decimal;
+}
+
+ul {
+	list-style: disc;
+}
+p {
+	margin-bottom: 0.75rem;
+}
+
+strong {
+	font-weight: bold;
+	color: var(--text);
+}
