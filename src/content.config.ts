@@ -14,24 +14,27 @@ const tweet = defineCollection({
 	}),
 });
 
+const base_schema = z.object({
+	date: z.coerce.date(),
+	title: z.string(),
+	created: z.coerce.date(),
+	excerpt: z.string(),
+});
 const tab = defineCollection({
 	loader: glob({ base: './src/content/tab', pattern: '**/*.{md,mdx}' }),
-	schema: z.object({
-		date: z.coerce.date(),
-		title: z.string(),
-		created: z.coerce.date(),
-		excerpt: z.string(),
-	}),
+	schema: base_schema,
 });
 
 const master = defineCollection({
 	loader: glob({ base: './src/content/', pattern: '*.{md,mdx}' }),
-	schema: z.object({
-		date: z.coerce.date(),
-		title: z.string(),
-		created: z.coerce.date(),
-		excerpt: z.string(),
+	schema: base_schema,
+});
+
+const blog = defineCollection({
+	loader: glob({ base: './src/content/blog/', pattern: '*.{md,mdx}' }),
+	schema: base_schema.extend({
+		tags: z.string().array().optional().default([]),
 	}),
 });
 
-export const collections = { tweet, tab, master };
+export const collections = { tweet, tab, master, blog };
