@@ -1,0 +1,45 @@
+---
+import { k_emoji_regex } from '@/consts';
+import PaperClipIcon from 'components/icons/PaperClipIcon.svg';
+
+export type Props = {
+	id: string;
+};
+
+const { id } = Astro.props;
+
+const satinized_id = id
+	.replace(k_emoji_regex, '')
+	.trim()
+	.replace(/\s+/g, '-')
+	.toLowerCase();
+---
+
+<div>
+	<span id={satinized_id}> <slot /> </span>
+	<a href={`#${satinized_id}`} title="permalink">
+		<PaperClipIcon />
+	</a>
+</div>
+
+<style lang="scss">
+	div {
+		margin-bottom: 0.5rem;
+		display: flex;
+		column-gap: 0.5rem;
+		align-items: center;
+		margin-top: 1rem;
+		scroll-margin-top: 4rem;
+	}
+	a {
+		color: var(--text);
+		width: 2.75rem;
+		height: 2.75rem;
+		border-radius: 0.375rem;
+
+		&:hover {
+			color: var(--peach);
+			background-color: var(--p-surface);
+		}
+	}
+</style>

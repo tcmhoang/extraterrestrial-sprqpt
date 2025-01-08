@@ -124,3 +124,6 @@ export const k_links = [
 		icon: ScheduleIcon,
 	},
 ];
+
+export const k_emoji_regex =
+	/[\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF]|\?/g;
