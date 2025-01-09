@@ -1,31 +1,20 @@
 ---
-import { build_title } from '@/consts';
-import BaseLayout from './Base.astro';
 export type Props = {
 	date: Date;
-	title: string;
-	description: string;
 };
 
-const { date, title, description } = Astro.props;
+const { date } = Astro.props;
 
 // TODO: Optimize SEO
 ---
 
-<BaseLayout>
-	<Fragment slot="additional_head">
-		<title>{build_title(title)}</title>
-		<meta name="description" content={description} />
-	</Fragment>
+<div>
+	<slot />
 
-	<div>
-		<slot />
-
-		<small>
-			Updated on {date.toDateString()}
-		</small>
-	</div>
-</BaseLayout>
+	<small>
+		Updated on {date.toDateString()}
+	</small>
+</div>
 
 <style>
 	div {
