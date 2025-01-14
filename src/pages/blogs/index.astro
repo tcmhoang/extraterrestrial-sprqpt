@@ -17,25 +17,31 @@ const all_blogs = blogs
 		...data,
 		thumbnail_meta: fetch_blog_image_metadata(id),
 	}))
-	.map((data) => ({
-		...data,
-		thumbnail:
-			data.thumbnail_meta?.fetcher && data.thumbnail_meta.alt
-				? () =>
-						Picture({
-							src: data.thumbnail_meta!.fetcher(),
-							width: 360,
-							alt: data.thumbnail_meta!.alt,
-						})
-				: undefined,
-	}))
 
 	.toSorted((v1, v2) => (v1.date <= v2.date ? 1 : -1));
 ---
 
 <Layout title="Blogs">
 	<ContentLayout date={new Date()}>
-		<BlogOutliner {tags} blogs={all_blogs} client:load />
+		<BlogOutliner {tags} blogs={all_blogs} client:load>
+			{
+				all_blogs
+					.filter(
+						({ thumbnail_meta, id }) =>
+							thumbnail_meta?.fetcher &&
+							thumbnail_meta?.alt &&
+							id,
+					)
+					.map(({ thumbnail_meta, id }) => (
+						<Picture
+							pictureAttributes={{ id, class: 'card-thumbnail' }}
+							src={thumbnail_meta!.fetcher()}
+							width="360"
+							alt={thumbnail_meta!.alt}
+						/>
+					))
+			}
+		</BlogOutliner>
 	</ContentLayout>
 </Layout>
 

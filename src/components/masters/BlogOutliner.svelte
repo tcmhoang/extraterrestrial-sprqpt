@@ -1,4 +1,5 @@
 <script>
+	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 
 	/**
@@ -16,7 +17,7 @@
 	 * 	}[];
 	 * }}
 	 */
-	const { tags, blogs } = $props();
+	const { tags, blogs, children } = $props();
 
 	let tags_state = $state(
 		tags.sort().map((/** @type string* */ v) => [v, true]) ?? [],
@@ -46,6 +47,18 @@
 			),
 		),
 	);
+	/** @type {HTMLDivElement} */
+	let images_comp;
+
+	/** @type {{ id: string; html: string }[]} */
+	let image_with_id = $state([]);
+
+	onMount(() => {
+		[...images_comp.children].forEach((n) =>
+			image_with_id.push({ id: n.firstChild.id, html: n.innerHTML }),
+		);
+		images_comp.remove();
+	});
 </script>
 
 <div class="filter-chips">
@@ -55,10 +68,11 @@
 </div>
 
 <div class="blogs">
-	{#each blogs_state as { title, created, tags, excerpt, id, thumbnail } (id)}
+	{#each blogs_state as { title, created, tags, excerpt, id } (id)}
+		{@const mb_image = image_with_id.find((iwi) => iwi.id == id)}
 		<a class="card" href="/blogs/{id}" transition:slide>
-			{#if thumbnail}
-				{@render thumbnail()}
+			{#if mb_image}
+				{@html mb_image.html}
 			{:else}
 				<div class="card-thumbnail fallback">
 					{title.split('').slice(0, 2).join('')}
@@ -91,6 +105,10 @@
 	{/each}
 </div>
 
+<div bind:this={images_comp} class="hidden">
+	{@render children?.()}
+</div>
+
 <style lang="scss">
 	$card-gaps: 1.5rem;
 	.blogs {
@@ -112,7 +130,7 @@
 		}
 	}
 
-	.card-thumbnail {
+	:global(.card-thumbnail) {
 		width: 100%;
 		height: auto;
 		aspect-ratio: 3/2;
