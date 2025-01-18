@@ -27,8 +27,9 @@
 		tags.sort().map((/** @type string* */ v) => [v, true]) ?? [],
 	);
 
-	const toggle_filter = (/** @type Event * */ event) =>
-		(tags_state = /** @type {[string, boolean][]} */ ([
+	const toggle_filter = (/** @type Event * */ event) => {
+		console.log(event.target.textContent);
+		tags_state = /** @type {[string, boolean][]} */ ([
 			...tags_state.filter(
 				(v) =>
 					v[0] !=
@@ -36,13 +37,14 @@
 			),
 			[
 				/** @type HTMLElement * */ (event.target).textContent ?? '',
-				!(tags.find(
+				!(tags_state.find(
 					(v) =>
 						v[0] ==
 						/** @type HTMLElement * */ (event.target).textContent,
 				) ?? ['', false])[1],
 			],
-		]).toSorted((a, b) => (a.at(0) + '').localeCompare(b.at(0) + '')));
+		]).toSorted((a, b) => (a.at(0) + '').localeCompare(b.at(0) + ''));
+	};
 
 	let blogs_state = $derived(
 		blogs_with_preview_imgs.filter(({ tags }) =>
@@ -66,7 +68,7 @@
 </script>
 
 <div class="filter-chips">
-	{#each tags_state as [title, activated]}
+	{#each tags_state as [title, activated] (title)}
 		<button class:activated onclick={toggle_filter}>
 			<span>{title}</span>
 		</button>
@@ -142,6 +144,7 @@
 		aspect-ratio: 3/2;
 		overflow: hidden;
 		border-radius: 13px;
+		min-height: 17vh;
 	}
 
 	:global(picture.card-thumbnail img),
@@ -179,8 +182,20 @@
 		margin: 0;
 	}
 
+	@media screen and (max-width: 730px) {
+		.card {
+			grid-template: 50% 1fr / auto;
+			aspect-ratio: unset;
+			height: auto;
+		}
+		.thumbnail-wrapper {
+			place-self: center;
+		}
+	}
+
 	.filter-chips {
 		display: flex;
+		flex-wrap: wrap;
 		gap: 0.25rem;
 		align-content: center;
 		justify-content: center;
