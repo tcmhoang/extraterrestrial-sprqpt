@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { flip } from 'svelte/animate';
 	import { slide } from 'svelte/transition';
 
 	/**
@@ -14,10 +15,13 @@
 	 * 		created: string;
 	 * 		tags: string[] | undefined;
 	 * 		excerpt: string;
+	 * 		image_html_render: string | undefined;
 	 * 	}[];
 	 * }}
 	 */
 	const { tags, blogs, children } = $props();
+
+	let blogs_with_preview_imgs = [...blogs];
 
 	let tags_state = $state(
 		tags.sort().map((/** @type string* */ v) => [v, true]) ?? [],
@@ -41,7 +45,7 @@
 		]).toSorted((a, b) => (a.at(0) + '').localeCompare(b.at(0) + '')));
 
 	let blogs_state = $derived(
-		blogs.filter(({ tags }) =>
+		blogs_with_preview_imgs.filter(({ tags }) =>
 			tags.some((/** @type string */ t) =>
 				tags_state.some(([k, v]) => k == t && v),
 			),
@@ -50,12 +54,12 @@
 	/** @type {HTMLDivElement} */
 	let images_comp;
 
-	/** @type {{ id: string; html: string }[]} */
-	let image_with_id = $state([]);
-
 	onMount(() => {
-		[...images_comp.children].forEach((n) =>
-			image_with_id.push({ id: n.firstChild.id, html: n.innerHTML }),
+		[...images_comp.children].forEach(
+			(n) =>
+				(blogs_with_preview_imgs.find(
+					(v) => v.id == n.firstChild.id,
+				).image_html_render = n.innerHTML),
 		);
 		images_comp.remove();
 	});
@@ -63,23 +67,26 @@
 
 <div class="filter-chips">
 	{#each tags_state as [title, activated]}
-		<button class:activated onclick={toggle_filter}>{title}</button>
+		<button class:activated onclick={toggle_filter}>
+			<span>{title}</span>
+		</button>
 	{/each}
 </div>
 
 <div class="blogs">
-	{#each blogs_state as { title, created, tags, excerpt, id } (id)}
-		{@const mb_image = image_with_id.find((iwi) => iwi.id == id)}
-		<a class="card" href="/blogs/{id}" transition:slide>
-			{#if mb_image}
-				{@html mb_image.html}
-			{:else}
-				<div class="card-thumbnail fallback">
-					{title.split('').slice(0, 2).join('')}
-				</div>
-			{/if}
-			<dl class="card-content">
-				<dt class="card-title">
+	{#each blogs_state as { title, created, tags, excerpt, id, image_html_render } (id)}
+		<a class="card" href="/blogs/{id}" animate:flip>
+			<div class="thumbnail-wrapper">
+				{#if image_html_render}
+					{@html image_html_render}
+				{:else}
+					<div class="card-thumbnail fallback" out:slide>
+						{title.split('').slice(0, 2).join('')}
+					</div>
+				{/if}
+			</div>
+			<dl>
+				<dt>
 					<strong>{title}</strong>
 				</dt>
 				<dd>
@@ -93,8 +100,7 @@
 							month: 'short',
 							year: 'numeric',
 						})}
-						}</time
-					>
+					</time>
 				</dd>
 				{#if tags}
 					<dt>Tags:</dt>
@@ -118,7 +124,7 @@
 	}
 	.card {
 		width: 100%;
-		height: auto;
+		height: calc(100vh / 5);
 		aspect-ratio: 3/1;
 		border-radius: 13px;
 		display: grid;
@@ -130,12 +136,18 @@
 		}
 	}
 
-	:global(.card-thumbnail) {
-		width: 100%;
-		height: auto;
+	.thumbnail-wrapper {
+		display: flex;
+		height: 100%;
 		aspect-ratio: 3/2;
-		object-fit: cover;
+		overflow: hidden;
 		border-radius: 13px;
+	}
+
+	:global(picture.card-thumbnail img),
+	.card-thumbnail {
+		object-fit: cover;
+		width: 100%;
 		font-size: var(--step-8);
 		font-weight: bold;
 		text-indent: 1.5rem;
@@ -176,7 +188,7 @@
 	}
 
 	button {
-		display: inline-flex;
+		display: flex;
 		background: var(--crust);
 		color: var(--maroon);
 		padding: 0.3rem 0.5rem;
@@ -186,6 +198,10 @@
 		font-weight: normal;
 		transition: all 150ms ease-in-out;
 		animation: jump 350ms cubic-bezier(0.5, 0, 0.5, 1);
+
+		& > span {
+			place-self: center;
+		}
 
 		&:hover {
 			color: var(--red);
