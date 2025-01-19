@@ -7,7 +7,6 @@ pkgs.mkShellNoCC {
     svelte-language-server
     typescript-language-server
     vscode-extensions.denoland.vscode-deno
-    vscode-extensions.unifiedjs.vscode-mdx
     vscode-langservers-extracted
   ];
   shellHook = ''

@@ -9,11 +9,11 @@ tags:
     - Web development
 ---
 
-{% overview %}
-For the past few months, I've worked with a large typescript mono
-repository code base. For me, who's only ever used pure JavaScript for
-web development.
-{% /overview %}
+import Overview from 'components/nodes/Overview.astro';
+<Overview>
+	For the past few months, I've worked with a large typescript mono repository
+	code base. For me, who's only ever used pure JavaScript for web development.
+</Overview>;
 
 It's a good chance to get my hands dirty with real-world enterprise code.
 After messing it around for some time, I have to say, I do get why folks
@@ -41,7 +41,7 @@ argument, for example.
 
 ```ts
 function foo(a: number): number {
-    return 3;
+	return 3;
 }
 ```
 
@@ -49,14 +49,14 @@ But is the `a` argument always the `number` type?
 
 ```ts
 function foo(a: number): number {
-    return 3;
+	return 3;
 }
 
 // Let's assume that this function will go out to the internet
 // to get that value
 async function fakeFetch(): Promise<number> {
-    const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
-    return (await res) as number;
+	const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
+	return (await res) as number;
 }
 
 const badVariable = await fakeFetch();
@@ -73,7 +73,7 @@ But if our `foo` function uses a method belong to `Number` class like:
 
 ```ts
 function foo(a: number): string {
-    return a.toFixed().toUpperCase();
+	return a.toFixed().toUpperCase();
 }
 ```
 
@@ -127,10 +127,10 @@ your head is probably a try-catch block. But where do we put it?
 
     ```ts
     try {
-        console.log(foo(badVariable));
+    	console.log(foo(badVariable));
     } catch (e) {
-        console.err('failed to call foo');
-        rethrow;
+    	console.err('failed to call foo');
+    	rethrow;
     }
     ```
 
@@ -141,12 +141,12 @@ your head is probably a try-catch block. But where do we put it?
 
     ```ts
     function foo(a: number): string {
-        try {
-            return a.toFixed().toUpperCase();
-        } catch (e) {
-            console.err('failed inside foo');
-            rethrow;
-        }
+    	try {
+    		return a.toFixed().toUpperCase();
+    	} catch (e) {
+    		console.err('failed inside foo');
+    		rethrow;
+    	}
     }
     ```
 
@@ -156,17 +156,17 @@ your head is probably a try-catch block. But where do we put it?
 
     ```ts
     async function fakeFetch(): Promise<number> {
-        const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
+    	const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
 
-        const val = (await res) as number;
-        try {
-            val.toFixed();
-            // and for other properties in `Number` class
-            return val;
-        } catch (e) {
-            console.err('returned type is not a number instance');
-            rethrow;
-        }
+    	const val = (await res) as number;
+    	try {
+    		val.toFixed();
+    		// and for other properties in `Number` class
+    		return val;
+    	} catch (e) {
+    		console.err('returned type is not a number instance');
+    		rethrow;
+    	}
     }
     ```
 
@@ -197,15 +197,15 @@ It'll go like this:
 
 ```ts
 function assertIsNumber(value: unknown): asserts value is number {
-    if (typeof value != 'number') {
-        throw new Error(); // assertion error
-    }
+	if (typeof value != 'number') {
+		throw new Error(); // assertion error
+	}
 }
 
 function foo(a: number): string {
-    assertIsNumber(a);
-    // After that, a is a true number 😀
-    return a.toFixed().toUpperCase();
+	assertIsNumber(a);
+	// After that, a is a true number 😀
+	return a.toFixed().toUpperCase();
 }
 ```
 
@@ -226,8 +226,8 @@ if you think the assertion functions are too long.
 
 ```ts
 function foo(a: number): string | undefined {
-    if (typeof a != 'number') return undefined;
-    return a.toFixed().toUpperCase();
+	if (typeof a != 'number') return undefined;
+	return a.toFixed().toUpperCase();
 }
 ```
 
@@ -282,36 +282,36 @@ make it an instance type
 ```ts
 // from this
 type UserPayload = {
-    name?: string;
+	name?: string;
 };
 
 // to this
 
 class User {
-    private static kPlaceHolderName = 'NOT_FOUND';
-    constructor(private _name?: string) {
-        super();
-        if (this._name == User.kPlaceHolderName) {
-            this._name = undefined;
-        }
-    }
+	private static kPlaceHolderName = 'NOT_FOUND';
+	constructor(private _name?: string) {
+		super();
+		if (this._name == User.kPlaceHolderName) {
+			this._name = undefined;
+		}
+	}
 
-    get name(): string {
-        return name ?? User.kPlaceHolderName;
-    }
+	get name(): string {
+		return name ?? User.kPlaceHolderName;
+	}
 
-    set name(value: string) {
-        if (
-            value == User.kPlaceHolderName ||
-            !value.trim().length ||
-            !typeof value == 'string' ||
-            value == this._name
-        ) {
-            return;
-        }
+	set name(value: string) {
+		if (
+			value == User.kPlaceHolderName ||
+			!value.trim().length ||
+			!typeof value == 'string' ||
+			value == this._name
+		) {
+			return;
+		}
 
-        this._name = value;
-    }
+		this._name = value;
+	}
 }
 ```
 
@@ -328,51 +328,51 @@ it vice versa without manually passing the positional arguments to it.
 
 ```ts
 class User {
-    private static kPlaceHolderName = 'NOT_FOUND';
+	private static kPlaceHolderName = 'NOT_FOUND';
 
-    // Notice, contructor now private
-    private constructor(private _name?: string) {
-        super();
-        if (this._name == User.kPlaceHolderName) {
-            this._name = undefined;
-        }
-    }
+	// Notice, contructor now private
+	private constructor(private _name?: string) {
+		super();
+		if (this._name == User.kPlaceHolderName) {
+			this._name = undefined;
+		}
+	}
 
-    static promote(userPayload: UserPayload): User {
-        return User.parse(userPayload);
-    }
+	static promote(userPayload: UserPayload): User {
+		return User.parse(userPayload);
+	}
 
-    static parse(raw: unknown): User {
-        if (!typeof raw != 'object' || (!'name') in raw) {
-            throw new Error(`
+	static parse(raw: unknown): User {
+		if (!typeof raw != 'object' || (!'name') in raw) {
+			throw new Error(`
         Invalid Argument ${raw}`);
-        }
+		}
 
-        return new User(raw.name);
-    }
+		return new User(raw.name);
+	}
 
-    get name(): string {
-        return name ?? User.kPlaceHolderName;
-    }
+	get name(): string {
+		return name ?? User.kPlaceHolderName;
+	}
 
-    set name(value: string) {
-        if (
-            value == User.kPlaceHolderName ||
-            !value.trim().length ||
-            !typeof value == 'string' ||
-            value == this._name
-        ) {
-            return;
-        }
+	set name(value: string) {
+		if (
+			value == User.kPlaceHolderName ||
+			!value.trim().length ||
+			!typeof value == 'string' ||
+			value == this._name
+		) {
+			return;
+		}
 
-        this._name = value;
-    }
+		this._name = value;
+	}
 
-    to(): UserPayload {
-        return {
-            ...(this._user ? { name: this._user } : {}),
-        };
-    }
+	to(): UserPayload {
+		return {
+			...(this._user ? { name: this._user } : {}),
+		};
+	}
 }
 ```
 
@@ -389,61 +389,61 @@ Pretty cool huh? We can make it even better by integrating the
 import z from 'zod';
 
 class User {
-    private static kPlaceHolderName = 'NOT_FOUND';
+	private static kPlaceHolderName = 'NOT_FOUND';
 
-    private constructor(private _name?: string) {
-        super();
-        if (this._name == User.kPlaceHolderName) {
-            this._name = undefined;
-        }
-    }
+	private constructor(private _name?: string) {
+		super();
+		if (this._name == User.kPlaceHolderName) {
+			this._name = undefined;
+		}
+	}
 
-    // We introduce user's schema here
-    static schema = z.object({
-        name: z
-            .string()
-            .min(1)
-            .refine((val) => val != User.kPlaceHolderName, {
-                message: 'User cannot have the placeholder as name',
-            }),
-    });
+	// We introduce user's schema here
+	static schema = z.object({
+		name: z
+			.string()
+			.min(1)
+			.refine((val) => val != User.kPlaceHolderName, {
+				message: 'User cannot have the placeholder as name',
+			}),
+	});
 
-    static promote(userPayload: UserPayload): User {
-        return User.parse(userPayload);
-    }
+	static promote(userPayload: UserPayload): User {
+		return User.parse(userPayload);
+	}
 
-    static parse(raw: unknown): User {
-        const parsed = User.schema.safeParse(raw);
-        if (!parsed.success) {
-            throw new Error(`
+	static parse(raw: unknown): User {
+		const parsed = User.schema.safeParse(raw);
+		if (!parsed.success) {
+			throw new Error(`
         Invalid Argument ${raw}, parsed.error.format()`);
-        }
+		}
 
-        return new User(parsed.name);
-    }
+		return new User(parsed.name);
+	}
 
-    get name(): string {
-        return name ?? User.kPlaceHolderName;
-    }
+	get name(): string {
+		return name ?? User.kPlaceHolderName;
+	}
 
-    set name(value: string) {
-        // Use the schema in the setter validation
-        if (
-            value == User.kPlaceHolderName ||
-            value == this._name ||
-            !User.schema.shape.name.safeParsed(value).sucess
-        ) {
-            return;
-        }
+	set name(value: string) {
+		// Use the schema in the setter validation
+		if (
+			value == User.kPlaceHolderName ||
+			value == this._name ||
+			!User.schema.shape.name.safeParsed(value).sucess
+		) {
+			return;
+		}
 
-        this._name = value;
-    }
+		this._name = value;
+	}
 
-    to(): UserPayload {
-        return {
-            ...(this._user ? { name: this._user } : {}),
-        };
-    }
+	to(): UserPayload {
+		return {
+			...(this._user ? { name: this._user } : {}),
+		};
+	}
 }
 ```
 
