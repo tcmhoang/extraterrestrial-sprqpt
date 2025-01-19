@@ -77,7 +77,7 @@
 
 <div class="blogs">
 	{#each blogs_state as { title, created, tags, excerpt, id, image_html_render } (id)}
-		<a class="card" href="/blogs/{id}" animate:flip>
+		<a class="card" href="/blogs/{id}" animate:flip={{duration: 250}}>
 			<div class="thumbnail-wrapper">
 				{#if image_html_render}
 					{@html image_html_render}
@@ -119,16 +119,18 @@
 
 <style lang="scss">
 	$card-gaps: 1.5rem;
+	$border-radius: 13px;
 	.blogs {
 		display: grid;
 		gap: 0.75rem;
-		margin-bottom: calc(1.5rem * 2);
+		margin-bottom: 3rem;
 	}
 	.card {
 		width: 100%;
-		height: calc(100vh / 5);
+		height: 20vh;
+		min-height: calc(var(--width) * 0.3);
 		aspect-ratio: 3/1;
-		border-radius: 13px;
+		border-radius: $border-radius;
 		display: grid;
 		padding: 1rem;
 		grid-template: auto / 50% 1fr;
@@ -140,17 +142,25 @@
 
 	.thumbnail-wrapper {
 		display: flex;
-		height: 100%;
 		aspect-ratio: 3/2;
+		height: 100%;
 		overflow: hidden;
-		border-radius: 13px;
-		min-height: 17vh;
+		border-radius: $border-radius;
+		min-height: calc(var(--width) * 0.15);
+		justify-content: center;
+	}
+
+
+	:global(picture){
+		width: 100%;
 	}
 
 	:global(picture.card-thumbnail img),
 	.card-thumbnail {
 		object-fit: cover;
 		width: 100%;
+		height: 100%;
+		aspect-ratio: unset;
 		font-size: var(--step-8);
 		font-weight: bold;
 		text-indent: 1.5rem;
@@ -183,10 +193,15 @@
 	}
 
 	@media screen and (max-width: 730px) {
+		.blogs {
+			gap: 0.325rem;
+			margin-bottom: 1.5rem;
+		}
+
 		.card {
 			grid-template: 50% 1fr / auto;
 			aspect-ratio: unset;
-			height: auto;
+		min-height: calc(var(--width) * 0.5);
 		}
 		.thumbnail-wrapper {
 			place-self: center;
