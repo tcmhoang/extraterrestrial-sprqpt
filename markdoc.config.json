@@ -1,13 +1,12 @@
 [
-  {
-    "id": "sprqpt",
-    "path": "src/content",
-    "schema": {
-      "path": "markdoc.config.mjs",
-      "type": "esm",
-      "property": "default",
-      "watch": true
+    {
+        "id": "sprqpt",
+        "path": "src/content",
+        "schema": {
+            "path": "markdoc.config.mjs",
+            "type": "esm",
+            "property": "default",
+            "watch": true
+        }
     }
-  }
 ]
-

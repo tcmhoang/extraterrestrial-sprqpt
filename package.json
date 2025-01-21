@@ -1,37 +1,36 @@
 {
-  "name": "sprqpt",
-  "version": "0.0.1",
-  "type": "module",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "type": "astro sync",
-    "format": "prettier . --write --cache",
-    "check:astro": "astro check",
-    "check:svelte": "svelte-check --tsconfig ./tsconfig.json"
-  },
-  "devDependencies": {
-    "@astrojs/markdoc": "^0.12.6",
-    "@astrojs/rss": "^4.0.11",
-    "@astrojs/sitemap": "^3.2.1",
-    "@astrojs/svelte": "^7.0.3",
-    "astro": "^5.1.7",
-    "@fullhuman/postcss-purgecss": "^7.0.2",
-    "@std/path": "npm:@jsr/std__path@^1.0.8",
-    "cssnano": "^7.0.6",
-    "postcss-combine-duplicated-selectors": "^10.0.3",
-    "postcss-preset-env": "^10.1.3",
-    "prettier": "^4.0.0-alpha.10",
-    "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-jsdoc": "^1.3.2",
-    "prettier-plugin-svelte": "^3.3.3",
-    "sass": "^1.83.4",
-    "sharp": "^0.33.5",
-    "svelte": "^5.19.0",
-    "svelte-check": "^4.1.4",
-    "typescript": "^5.8.0-dev.20250118"
-  }
+    "name": "sprqpt",
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "type": "astro sync",
+        "format": "prettier . --write --cache",
+        "check:astro": "astro check",
+        "check:svelte": "svelte-check --tsconfig ./tsconfig.json"
+    },
+    "devDependencies": {
+        "@astrojs/markdoc": "^0.12.6",
+        "@astrojs/rss": "^4.0.11",
+        "@astrojs/sitemap": "^3.2.1",
+        "@astrojs/svelte": "^7.0.3",
+        "astro": "^5.1.7",
+        "@fullhuman/postcss-purgecss": "^7.0.2",
+        "@std/path": "npm:@jsr/std__path@^1.0.8",
+        "cssnano": "^7.0.6",
+        "postcss-combine-duplicated-selectors": "^10.0.3",
+        "postcss-preset-env": "^10.1.3",
+        "prettier": "^4.0.0-alpha.10",
+        "prettier-plugin-astro": "^0.14.1",
+        "prettier-plugin-jsdoc": "^1.3.2",
+        "prettier-plugin-svelte": "^3.3.3",
+        "sass": "^1.83.4",
+        "sharp": "^0.33.5",
+        "svelte": "^5.19.0",
+        "svelte-check": "^4.1.4",
+        "typescript": "^5.8.0-dev.20250118"
+    }
 }
-

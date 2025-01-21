@@ -77,7 +77,7 @@
 
 <div class="blogs">
 	{#each blogs_state as { title, created, tags, excerpt, id, image_html_render } (id)}
-		<a class="card" href="/blogs/{id}" animate:flip={{duration: 250}}>
+		<a class="card" href="/blogs/{id}" animate:flip={{ duration: 250 }}>
 			<div class="thumbnail-wrapper">
 				{#if image_html_render}
 					{@html image_html_render}
@@ -150,8 +150,7 @@
 		justify-content: center;
 	}
 
-
-	:global(picture){
+	:global(picture) {
 		width: 100%;
 	}
 
@@ -201,7 +200,7 @@
 		.card {
 			grid-template: 50% 1fr / auto;
 			aspect-ratio: unset;
-		min-height: calc(var(--width) * 0.5);
+			min-height: calc(var(--width) * 0.5);
 		}
 		.thumbnail-wrapper {
 			place-self: center;
