@@ -9,32 +9,31 @@ tags:
     - Web development
 ---
 
-import Overview from 'components/nodes/Overview.astro';
-<Overview>
+{% overview %}
 	For the past few months, I've worked with a large typescript mono repository
 	code base. For me, who's only ever used pure JavaScript for web development.
-</Overview>;
+{% /overview %}
 
 It's a good chance to get my hands dirty with real-world enterprise code.
 After messing it around for some time, I have to say, I do get why folks
 are so grumpy about Typescripts. In the post, I'll show you some quirks
 around Typescript and how I overcame them. The truth is
 
-{% permalink %}
+{% perma_link id="typescript_type_system_sucks" %}
 
 # Typescript type system sucks
 
-{% /permalink %}
+{% /perma_link %}
 
 Yup, you heard that right. It's the biggest beef I got with Typescript
 till now. The whole point of Typescript itself is the type inference and
 type safety. But in reality, it's a false dilemma.
 
-{% permalink %}
+{% perma_link id="the_problem_with_type" %}
 
 ## The problem with type
 
-{% /permalink %}
+{% /perma_link %}
 
 Let's say we have a function that supposedly takes a number as an
 argument, for example.
@@ -96,11 +95,11 @@ anything from `string` to `number` to who knows what.
 Seems like we're backed to the old JavaScript ones. We cannot sure on
 what value passed to functions/methods.
 
-{% permalink %}
+{% perma_link id="as_keyword" %}
 
 ### `as` keyword?
 
-{% /permalink %}
+{% /perma_link %}
 
 That's where the thing with `as` gets really frustrating. When you use
 the `as` keyword, it should do the proper type casting instead of
@@ -114,11 +113,11 @@ critical. Let me tell you, this kind of thing is hardly caught in the
 unit tests, because it is not a bug, it's your wrong perspective about
 the worldview. Let's put it like that.
 
-{% permalink %}
+{% perma_link id="validating_types" %}
 
 ## Validating types
 
-{% /permalink %}
+{% /perma_link %}
 
 So how do we actually catch these errors? The first thing that pops into
 your head is probably a try-catch block. But where do we put it?
@@ -182,11 +181,11 @@ function. It would make the function body significantly longer and
 heavily decrease code readability. Till now, I do not see any one used
 this approach in their code base.
 
-{% permalink %}
+{% perma_link id="assertion_functions" %}
 
 ### Assertion functions
 
-{% /permalink %}
+{% /perma_link %}
 
 Alright, maybe the aforementioned ways of catching that error are a bit
 somewhat over the top, we can narrow them down in the function body
@@ -213,11 +212,11 @@ Yep, this works. Also for ones who might wonder the returned type of
 that function would be. That will be `void`, in case of error it would
 throw `Exception`
 
-{% permalink %}
+{% perma_link id="type_guards" %}
 
 ### Type Guards
 
-{% /permalink %}
+{% /perma_link %}
 
 Cool, you can see, we use the `typeof` keyword in the **assert function**
 about. That 's one of the _type guards_. You should use them
@@ -242,11 +241,11 @@ To sum up, uses the _assertion functions_ when you're dealing with the
 composite type (Eg: Records, Private Instance Types, except for Array.)
 and _guards_ for others.
 
-{% permalink %}
+{% perma_link id="better_ways_for_handle_composite_type" %}
 
 ## Better ways for handle Composite Types
 
-{% /permalink %}
+{% /perma_link %}
 
 It seems like a decent way of solving that issue.
 
@@ -270,11 +269,11 @@ feels right. In this blog, I'll only demonstrate the way I utilized
 `Class`. But the concept applied to `Proxy` as well. Just a different
 syntax.
 
-{% permalink %}
+{% perma_link id="class"%}
 
 ### Class
 
-{% /permalink %}
+{% /perma_link %}
 
 Just like other OOP languages, we can supercharge our `Record` type and
 make it an instance type
@@ -376,11 +375,11 @@ class User {
 }
 ```
 
-{% permalink %}
+{% perma_link id="zod_integration" %}
 
 ### Zod integration
 
-{% /permalink %}
+{% /perma_link %}
 
 Pretty cool huh? We can make it even better by integrating the
 [zod](https://zod.dev) package to that code.

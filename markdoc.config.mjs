@@ -12,6 +12,15 @@ export default defineMarkdocConfig({
     link_me: {
       render: component("./src/components/nodes/LinkMe.astro"),
     },
+    overview: {
+      render: component("./src/components/nodes/Overview.astro"),
+    },
+    perma_link: {
+      attributes: {
+        id: { type: String },
+      },
+      render: component("./src/components/nodes/PermaLink.astro"),
+    },
   },
 });
 
