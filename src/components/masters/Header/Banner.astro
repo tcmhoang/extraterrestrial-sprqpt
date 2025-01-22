@@ -14,10 +14,9 @@ const { hero_url, hero_alt } = Astro.props;
 			<Picture
 				src={hero_url}
 				alt={hero_alt}
-				pictureAttributes={{
-					style: 'object-fit: cover; aspect-ratio: 3/1; width: 100%; height: auto;',
-				}}
-			/>
+				widths={[240, 540, 720]}
+				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, 720px`}
+						/>
 		)
 	}
 </div>
@@ -36,5 +35,9 @@ const { hero_url, hero_alt } = Astro.props;
 	iframe {
 		overflow: hidden;
 		border: 0;
+	}
+
+	picture img{
+	object-fit: cover; aspect-ratio: 3/1; width: 100%; height: auto;
 	}
 </style>

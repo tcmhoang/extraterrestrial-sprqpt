@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Layout from 'layouts/Tab.astro';
-import ContentLayout from 'layouts/Content.astro';
+import ContentPartial from 'layouts/ContentPartial.astro';
 import { render } from 'astro:content';
 
 export const prerender = true;
@@ -20,7 +20,7 @@ const { Content } = await render(tab);
 ---
 
 <Layout title={tab.data.title}>
-	<ContentLayout date={tab.data.date}>
+	<ContentPartial date={tab.data.date}>
 		<Content />
-	</ContentLayout>
+	</ContentPartial>
 </Layout>

@@ -1,9 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from 'layouts/Tab.astro';
-import ContentLayout from 'layouts/Content.astro';
+import ContentPartial from 'layouts/ContentPartial.astro';
 import BlogOutliner from 'components/masters/BlogOutliner.svelte';
-import { fetch_blog_image_metadata } from '@/consts';
+import { fetch_blog_image_metadata } from '@/fns';
 import { Picture } from 'astro:assets';
 
 const blogs = (await getCollection('blog')).toSorted(
@@ -19,10 +19,12 @@ const all_blogs = blogs
 	}))
 
 	.toSorted((v1, v2) => (v1.date <= v2.date ? 1 : -1));
+
+const latest_updated = all_blogs.length ? all_blogs[0].date : new Date();
 ---
 
 <Layout title="Blogs">
-	<ContentLayout date={new Date()}>
+	<ContentPartial date={latest_updated}>
 		<BlogOutliner {tags} blogs={all_blogs} client:load>
 			{
 				all_blogs
@@ -42,7 +44,7 @@ const all_blogs = blogs
 					))
 			}
 		</BlogOutliner>
-	</ContentLayout>
+	</ContentPartial>
 </Layout>
 
 <style>

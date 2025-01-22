@@ -14,17 +14,17 @@ export default {
     ],
     overrides: [
         {
-            files: ['.*', '*.json', '*.md', '*.toml', '*.yml'],
-            options: {
-                useTabs: false,
-            },
-        },
-        {
             files: '*.astro',
             options: {
                 parser: 'astro',
             },
         },
         { files: '*.svelte', options: { parser: 'svelte' } },
+        {
+            files: ['.*', '*.json', '*.md', '*.toml', '*.yml'],
+            options: {
+                useTabs: false,
+            },
+        },
     ],
 };

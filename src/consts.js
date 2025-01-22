@@ -127,16 +127,3 @@ export const k_links = [
 
 export const k_emoji_regex =
 	/[\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF]|\?/g;
-
-const img_map = new Map([
-	[
-		'20240202-my-setup',
-		{
-			fetcher: async () => await import('./assets/danang-2021.png'),
-			alt: 'A senere view from the balcony back in the day I was in Danang',
-		},
-	],
-]);
-
-export const fetch_blog_image_metadata = (/** @type string */ id) =>
-	img_map.get(id);

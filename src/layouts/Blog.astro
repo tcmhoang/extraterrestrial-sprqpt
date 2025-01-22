@@ -1,0 +1,35 @@
+---
+import DefaultWithHeaderLayout from './DefaultWithHeader.astro';
+import CalendarIcon from 'components/icons/CalendarIcon.svg';
+import TagIcon from 'components/icons/TagIcon.svg';
+import NameWithVerifiedBadge from '@/components/masters/NameWithVerifiedBadge.astro';
+import { format_date } from '@/fns';
+
+export type Props = {
+	banner_data?: BannerData;
+	title: string;
+	date: Date;
+	tags: string[];
+};
+
+const { banner_data, title, date, tags } = Astro.props;
+---
+
+<DefaultWithHeaderLayout
+	deets={[
+		{ text: format_date(date), icon: CalendarIcon },
+		{ text: tags.length ? tags.join(', ') : 'Unspecified', icon: TagIcon },
+	]}
+	{banner_data}
+	heading={title}
+>
+	<NameWithVerifiedBadge slot="header_summary" />
+
+	<Fragment slot="header_heading">
+		{title}
+	</Fragment>
+
+	<slot name="additional_head" slot="additional_head" />
+
+	<slot />
+</DefaultWithHeaderLayout>

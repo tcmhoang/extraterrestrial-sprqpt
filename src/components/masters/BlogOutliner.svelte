@@ -1,4 +1,5 @@
 <script>
+	import { format_date } from '@/fns';
 	import { onMount } from 'svelte';
 	import { flip } from 'svelte/animate';
 	import { slide } from 'svelte/transition';
@@ -96,13 +97,7 @@
 				</dd>
 				<dt>Published at</dt>
 				<dd>
-					<time datetime={created}
-						>{created.toLocaleDateString('en-US', {
-							day: '2-digit',
-							month: 'short',
-							year: 'numeric',
-						})}
-					</time>
+					<time datetime={created}>{format_date(created)} </time>
 				</dd>
 				{#if tags}
 					<dt>Tags:</dt>
@@ -150,11 +145,11 @@
 		justify-content: center;
 	}
 
-	:global(picture) {
+	picture {
 		width: 100%;
 	}
 
-	:global(picture.card-thumbnail img),
+	picture.card-thumbnail img,
 	.card-thumbnail {
 		object-fit: cover;
 		width: 100%;
