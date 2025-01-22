@@ -31,19 +31,20 @@
  * @property {string} hero_alt - Alt text
  * @property {CssModifier} hero_css - Runtime injected css
  */
-/**
- * Contains information for constructing the banner image instance
- *
- * @typedef BannerImageData
- * @property {ImageData} hero_url - Imported image for the hero banner
- * @property {string} hero_alt - Alt text
- */
 
 /**
  * Local imported image via Astro
  *
- * @typedef {Promise<{ default: ImageMetadata }>} } ImageData - Imported image
- *   for the hero banner
+ * @typedef {Promise<{ default: ImageMetadata }>} LocalImageData - Imported
+ *   image for the hero banner
+ */
+
+/**
+ * Contains information for constructing the banner image instance
+ *
+ * @typedef BannerImageData
+ * @property {LocalImageData} hero_url - Imported image for the hero banner
+ * @property {string} hero_alt - Alt text
  */
 
 /**
