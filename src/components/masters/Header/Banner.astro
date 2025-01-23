@@ -16,7 +16,7 @@ const { hero_url, hero_alt } = Astro.props;
 				alt={hero_alt}
 				widths={[240, 540, 720]}
 				sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, 720px`}
-						/>
+			/>
 		)
 	}
 </div>
@@ -37,7 +37,10 @@ const { hero_url, hero_alt } = Astro.props;
 		border: 0;
 	}
 
-	picture img{
-	object-fit: cover; aspect-ratio: 3/1; width: 100%; height: auto;
+	picture img {
+		object-fit: cover;
+		aspect-ratio: 3/1;
+		width: 100%;
+		height: auto;
 	}
 </style>

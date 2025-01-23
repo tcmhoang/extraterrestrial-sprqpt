@@ -30,13 +30,13 @@
 	}
 }
 
-:root::view-transition-old(root) {
+::view-transition-old(root) {
 	animation:
 		calc(var(--speed) * 0.3) cubic-bezier(0.4, 0, 1, 1) both fade-out,
 		calc(var(--speed) * 1.2) cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
 }
 
-:root::view-transition-new(root) {
+::view-transition-new(root) {
 	animation:
 		var(--speed) cubic-bezier(0, 0, 0.2, 1) calc(var(--speed) * 0.3) both
 			fade-in,
