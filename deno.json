@@ -1,50 +1,50 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "checkJs": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "dom.asynciterable",
-      "deno.ns",
-      "deno.worker",
-      "ESNext.Array",
-      "ESNext"
-    ],
-    "verbatimModuleSyntax": true
-  },
-  "lint": {
-    "include": ["src/"],
-    "rules": {
-      "tags": ["recommended"],
-      "include": ["ban-untagged-todo"]
-    }
-  },
+    "compilerOptions": {
+        "strict": true,
+        "checkJs": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "dom.asynciterable",
+            "deno.ns",
+            "deno.worker",
+            "ESNext.Array",
+            "ESNext"
+        ],
+        "verbatimModuleSyntax": true
+    },
+    "lint": {
+        "include": ["src/"],
+        "rules": {
+            "tags": ["recommended"],
+            "include": ["ban-untagged-todo"]
+        }
+    },
 
-  "tasks": {
-    "lint": "deno lint"
-  },
-  "mports": {
-    "@std/path": "jsr:@std/path@^1.0.8",
-    "@/": "./src/",
-    "@styles/": "./src/styles/",
-    "@components/": "./src/components/",
-    "@layouts/": "./src/layouts/",
-    "@assets/": "./src/assets/",
-    "@content/": "./src/content/"
-  },
-  "fmt": {
-    "useTabs": true,
-    "lineWidth": 80,
-    "indentWidth": 4,
-    "semiColons": true,
-    "singleQuote": true,
-    "proseWrap": "preserve",
-    "include": ["src/"],
-    "exclude": ["*.css", "*.scss"]
-  },
-  "exclude": ["dist/"],
-  "lock": false,
-  "nodeModulesDir": "auto"
+    "tasks": {
+        "lint": "deno lint"
+    },
+    "mports": {
+        "@std/path": "jsr:@std/path@^1.0.8",
+        "@/": "./src/",
+        "@styles/": "./src/styles/",
+        "@components/": "./src/components/",
+        "@layouts/": "./src/layouts/",
+        "@assets/": "./src/assets/",
+        "@content/": "./src/content/",
+        "@states/": "./src/content/"
+    },
+    "fmt": {
+        "useTabs": true,
+        "lineWidth": 80,
+        "indentWidth": 4,
+        "semiColons": true,
+        "singleQuote": true,
+        "proseWrap": "preserve",
+        "include": ["src/"],
+        "exclude": ["*.css", "*.scss"]
+    },
+    "exclude": ["dist/"],
+    "lock": false,
+    "nodeModulesDir": "auto"
 }
-

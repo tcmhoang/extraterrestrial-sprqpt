@@ -1,6 +1,10 @@
 /** @typedef {import('svelte').Component} Component */
 /** @typedef {import('astro').ImageMetadata} ImageMetadata */
 /** @typedef {import('astro').AsyncRendererComponentFn<unknown>} AstroComponent */
+/**
+ * @template {object} T
+ * @typedef {import('nanostores').PreinitializedMapStore<T> & object} MapStore<Y>
+ */
 
 /**
  * @typedef ViewTransitionAPI
