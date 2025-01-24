@@ -1,11 +1,13 @@
 ---
 import CatIcon from 'components/icons/CatIcon.svelte';
+import ThemeToggle from 'components/masters/ThemeToggle.astro';
 ---
 
 <nav>
 	<a href="/" aria-label="Homepage">
 		<CatIcon client:load />
 	</a>
+	<ThemeToggle />
 </nav>
 
 <style lang="scss">

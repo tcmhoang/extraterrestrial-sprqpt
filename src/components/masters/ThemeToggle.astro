@@ -8,20 +8,24 @@ const aria_label = "Swap to new look. Give Javascript mojo, won't ya?";
 	const trigger = document.getElementById('theme-toggle');
 	const trigger_logo = trigger?.firstElementChild;
 
+	const morph_icon = () =>
+		theme.true_dark()
+			? trigger_logo?.classList.add('dark')
+			: trigger_logo?.classList.remove('dark');
+
 	const updated = () => {
 		if (!trigger) return;
-		const label = `Set theme to ${next_theme_state(theme.value)}`;
+		const label = `Set theme to ${next_theme_state(theme.value())}`;
 		trigger.title = label;
 		trigger.ariaLabel = label;
 		if (!trigger_logo) return;
-		theme.true_dark
-			? trigger_logo.classList.add('dark')
-			: trigger_logo.classList.remove('dark');
+		morph_icon();
 	};
 
 	const toggle = (e: Event) => {
 		e.preventDefault();
 		theme.next(localStorage, document);
+		morph_icon();
 	};
 
 	document.addEventListener('astro:before-swap', (e) => {
