@@ -12,6 +12,9 @@
         "check:astro": "astro check",
         "check:svelte": "svelte-check --tsconfig ./tsconfig.json"
     },
+    "dependencies": {
+        "nanostores": "^0.11.3"
+    },
     "devDependencies": {
         "@astrojs/markdoc": "^0.12.6",
         "@astrojs/rss": "^4.0.11",
