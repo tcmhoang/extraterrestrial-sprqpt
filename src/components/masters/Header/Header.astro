@@ -57,7 +57,7 @@ const { heading: mb_heading, banner_data, deets } = Astro.props;
 						{text.startsWith('/') ? (
 							<a
 								href={text}
-								title="Go to my {text.split('/').pop()}"
+								title=`Go to my ${text.split('/').pop()}`
 							>
 								{text}
 							</a>

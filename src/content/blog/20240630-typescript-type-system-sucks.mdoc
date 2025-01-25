@@ -124,50 +124,43 @@ your head is probably a try-catch block. But where do we put it?
 
 - Around the function call
 
-    ```ts
-    try {
-    	console.log(foo(badVariable));
-    } catch (e) {
-    	console.err('failed to call foo');
-    	rethrow;
-    }
-    ```
+
 
     Seems okay, but every time we call a function, we have to add more 5
     lines to the code base? Yuck!
 
 - Inside the function
 
-    ```ts
+```ts
     function foo(a: number): string {
-    	try {
-    		return a.toFixed().toUpperCase();
-    	} catch (e) {
-    		console.err('failed inside foo');
-    		rethrow;
-    	}
+	try {
+		return a.toFixed().toUpperCase();
+	} catch (e) {
+		console.err('failed inside foo');
+		rethrow;
+	}
     }
-    ```
+```
 
     Talk about paranoid. Hard-pass!
 
 - After doing the type assertion with `as`
 
-    ```ts
+```ts
     async function fakeFetch(): Promise<number> {
-    	const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
+	const res = Promise.resolve(Math.random() > 0.5 ? 'foobar' : 1);
 
-    	const val = (await res) as number;
-    	try {
-    		val.toFixed();
-    		// and for other properties in `Number` class
-    		return val;
-    	} catch (e) {
-    		console.err('returned type is not a number instance');
-    		rethrow;
-    	}
+	const val = (await res) as number;
+	try {
+		val.toFixed();
+		// and for other properties in `Number` class
+		return val;
+	} catch (e) {
+		console.err('returned type is not a number instance');
+		rethrow;
+	}
     }
-    ```
+```
 
     For this to work, we have to call the actual property that get accessed
     by the callee to make sure it is _indeed_ a `number` instance and not

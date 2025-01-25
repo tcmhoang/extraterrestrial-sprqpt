@@ -1,63 +1,63 @@
 {
-	"name": "TCMH Feed",
-	"id": "Personal application",
-	"short_name": "TCMH",
-	"icons": [
-		{
-			"src": "/icons/favicon.ico",
-			"sizes": "48x48",
-			"type": "image/x-icon"
-		},
-		{
-			"src": "/images/android-chrome-192x192.png",
-			"sizes": "192x192",
-			"type": "image/png",
-			"purpose": "maskable"
-		},
-		{
-			"src": "/images/android-chrome-512x512.png",
-			"sizes": "512x512",
-			"type": "image/png",
-			"purpose": "maskable"
-		},
-		{
-			"src": "/images/android-chrome-192x192.png",
-			"sizes": "192x192",
-			"type": "image/png"
-		},
-		{
-			"src": "/images/android-chrome-512x512.png",
-			"sizes": "512x512",
-			"type": "image/png"
-		}
-	],
-	"start_url": "/",
-	"scope": "/",
-	"theme_color": "#181825",
-	"background_color": "#11111b",
-	"display_override": ["fullscreen", "minimal-ui"],
-	"display": "standalone",
-	"screenshots": [
-		{
-			"src": "/images/screenshot.png",
-			"sizes": "779x1038",
-			"type": "image/png",
-			"form_factor": "wide",
-			"label": "Conrad's Hoang feed"
-		},
-		{
-			"src": "/images/screenshot.png",
-			"sizes": "779x1038",
-			"type": "image/png",
-			"label": "Conrad's Hoang feed"
-		}
-	],
+    "name": "TCMH Feed",
+    "id": "Personal application",
+    "short_name": "TCMH",
+    "icons": [
+        {
+            "src": "/icons/favicon.ico",
+            "sizes": "48x48",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "/images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "start_url": "/",
+    "scope": "/",
+    "theme_color": "#181825",
+    "background_color": "#11111b",
+    "display_override": ["fullscreen", "minimal-ui"],
+    "display": "standalone",
+    "screenshots": [
+        {
+            "src": "/images/screenshot.png",
+            "sizes": "779x1038",
+            "type": "image/png",
+            "form_factor": "wide",
+            "label": "Conrad's Hoang feed"
+        },
+        {
+            "src": "/images/screenshot.png",
+            "sizes": "779x1038",
+            "type": "image/png",
+            "label": "Conrad's Hoang feed"
+        }
+    ],
 
-	"protocol_handlers": [
-		{
-			"protocol": "web+tcmhoang",
-			"url": "/?type=%s"
-		}
-	],
-	"description": "Join me in my journey!"
+    "protocol_handlers": [
+        {
+            "protocol": "web+tcmhoang",
+            "url": "/?type=%s"
+        }
+    ],
+    "description": "Join me in my journey!"
 }

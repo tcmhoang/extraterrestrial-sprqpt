@@ -1,4 +1,5 @@
 import { component, defineMarkdocConfig } from '@astrojs/markdoc/config';
+import shiki from '@astrojs/markdoc/shiki';
 
 export default defineMarkdocConfig({
 	tags: {
@@ -23,4 +24,14 @@ export default defineMarkdocConfig({
 			render: component('./src/components/nodes/PermaLink.astro'),
 		},
 	},
+	extends: [
+		shiki({
+			themes: {
+				light: 'catppuccin-latte',
+				dark: 'catppuccin-mocha',
+			},
+			defaultColor: false,
+			wrap: true,
+		}),
+	],
 });
