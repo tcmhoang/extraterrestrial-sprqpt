@@ -5,37 +5,39 @@ const aria_label = "Swap to new look. Give Javascript mojo, won't ya?";
 <script>
 	import { next_theme_state, theme } from 'states/theme';
 
-	const trigger = document.getElementById('theme-toggle');
-	const trigger_logo = trigger?.firstElementChild;
+	document.addEventListener('astro:page-load', () => {
+		const trigger = document.getElementById('theme-toggle');
+		const trigger_logo = trigger?.firstElementChild;
+		const toggle = (e: Event) => {
+			e.preventDefault();
+			theme.next(localStorage, document);
+			morph_icon();
+		};
 
-	const morph_icon = () =>
-		theme.true_dark()
-			? trigger_logo?.classList.add('dark')
-			: trigger_logo?.classList.remove('dark');
+		document.addEventListener('astro:before-swap', (e) => {
+			theme.refresh(e.newDocument);
+			updated();
+		});
 
-	const updated = () => {
-		if (!trigger) return;
-		const label = `Set theme to ${next_theme_state(theme.value())}`;
-		trigger.title = label;
-		trigger.ariaLabel = label;
-		if (!trigger_logo) return;
-		morph_icon();
-	};
+		const morph_icon = () =>
+			theme.true_dark()
+				? trigger_logo?.classList.add('dark')
+				: trigger_logo?.classList.remove('dark');
 
-	const toggle = (e: Event) => {
-		e.preventDefault();
-		theme.next(localStorage, document);
-		morph_icon();
-	};
+		const updated = () => {
+			if (!trigger) return;
+			const label = `Set theme to ${next_theme_state(theme.value())}`;
+			trigger.title = label;
+			trigger.ariaLabel = label;
+			if (!trigger_logo) return;
+			morph_icon();
+		};
 
-	document.addEventListener('astro:before-swap', (e) => {
-		theme.refresh(e.newDocument);
+		trigger?.addEventListener('click', toggle);
 		updated();
 	});
-	trigger?.addEventListener('click', toggle);
 
 	theme.init(localStorage, document, window);
-	updated();
 </script>
 
 <button id="theme-toggle" title={aria_label} aria-label={aria_label}>

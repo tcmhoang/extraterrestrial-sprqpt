@@ -18,16 +18,18 @@ const { banner_data, summary, deets, heading } = Astro.props;
 <DefaultLayout>
 	<slot name="additional_head" slot="additional_head" />
 	<Header
+		transition:persist
 		deets={deets ?? k_default_header_props.deets}
 		heading={heading}
 		banner_data={banner_data ?? k_banner_data}
 	>
 		<slot name="header_heading" slot="header_heading">
-			<NameWithVerifiedBadge slot="header_heading" />
+			<NameWithVerifiedBadge slot="header_heading" transition:persist />
 		</slot>
 		<slot name="header_summary" slot="header_summary">
 			<HeaderSummary
 				summary={summary ?? k_default_header_props.summary}
+				transition:persist
 			/>
 		</slot>
 	</Header>

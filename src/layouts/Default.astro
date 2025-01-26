@@ -12,7 +12,7 @@ import Watermark from 'components/masters/Watermark.svelte';
 	<slot name="additional_head" slot="additional_head" />
 	<main class="w-content main"><slot /></main>
 	<Watermark client:visible />
-	<Footer />
+	<Footer transition:persist-props />
 </BaseLayout>
 
 <style>

@@ -5,9 +5,9 @@ import ThemeToggle from 'components/masters/ThemeToggle.astro';
 
 <nav>
 	<a href="/" aria-label="Homepage">
-		<CatIcon client:load transition:persist />
+		<CatIcon client:load transition:persist-props />
 	</a>
-	<ThemeToggle transition:persist-props />
+	<ThemeToggle transition:persist />
 </nav>
 
 <style lang="scss">

@@ -16,7 +16,6 @@ const { title } = Astro.props;
 		<meta name="description" content="Conrad Hoang's personal website" />
 	</Fragment>
 
-	<FeedNavigation />
-
+	<FeedNavigation transition:persist />
 	<slot />
 </Layout>
