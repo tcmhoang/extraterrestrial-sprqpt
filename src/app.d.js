@@ -49,6 +49,7 @@
  * @typedef BannerImageData
  * @property {LocalImageData} hero_url - Imported image for the hero banner
  * @property {string} hero_alt - Alt text
+ * @property {undefined} hero_css - Not applicable just for the lint
  */
 
 /**

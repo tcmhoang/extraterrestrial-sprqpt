@@ -1,15 +1,23 @@
 ---
 import { Picture } from 'astro:assets';
+import InjectableIFrame from './InjectableIFrame.svelte';
 
 export type Props = BannerIFrameData | BannerImageData;
 
 const { hero_url, hero_alt } = Astro.props;
+
+const mb_hero_css = Astro.props?.hero_css;
 ---
 
 <div>
 	{
 		typeof hero_url == 'string' ? (
-			<iframe src={hero_url} title={hero_alt} loading="lazy" />
+			<InjectableIFrame
+				{hero_url}
+				{hero_alt}
+				hero_css={mb_hero_css!}
+				client:load
+			/>
 		) : (
 			<Picture
 				src={hero_url}
@@ -25,16 +33,6 @@ const { hero_url, hero_alt } = Astro.props;
 	div {
 		height: 100%;
 		background-color: var(--base);
-
-		& > * {
-			width: 100%;
-			height: 100%;
-		}
-	}
-
-	iframe {
-		overflow: hidden;
-		border: 0;
 	}
 
 	picture img {

@@ -36,7 +36,7 @@ const get_mb_saved_theme = (/** @type Storage */ local_storage) => {
 
 const init_state = () => {
 	return {
-		subscribe: state?.subscribe,
+		subscribe: () => state?.subscribe,
 		value: () => state?.value.theme,
 		pref_dark: () => state?.value.pref_dark,
 		true_dark: () =>
