@@ -60,6 +60,9 @@ import PositionLocationIcon from 'components/icons/PositionLocationIcon.svg';
 
 export const k_hostname = 'SPRQPT';
 
+export const k_site_description =
+	'Spark point - where I blab on a various stuffs';
+
 export const build_title = (/** @type string */ title) =>
 	`${title} • ${k_hostname}`;
 
