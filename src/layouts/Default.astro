@@ -2,12 +2,13 @@
 import 'styles/default.css';
 import 'styles/default-transitions.css';
 import BaseLayout from './Base.astro';
+import { type Props } from './Base.astro';
 import Nav from 'components/masters/Nav.astro';
 import Footer from 'components/masters/Footer/Footer.astro';
 import Watermark from 'components/masters/Watermark.svelte';
 ---
 
-<BaseLayout>
+<BaseLayout {...Astro.props}>
 	<Nav />
 	<slot name="additional_head" slot="additional_head" />
 	<main class="w-content main"><slot /></main>

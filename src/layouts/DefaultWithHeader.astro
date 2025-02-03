@@ -1,5 +1,6 @@
 ---
 import DefaultLayout from './Default.astro';
+import { type Props as BaseProps } from './Base.astro';
 import Header from 'components/masters/Header/Header.astro';
 import HeaderSummary from 'components/masters/Header/Summary.astro';
 import NameWithVerifiedBadge from 'components/masters/NameWithVerifiedBadge.astro';
@@ -10,12 +11,12 @@ export type Props = {
 	summary?: string[];
 	deets?: Detail[];
 	heading?: string;
-};
+} & BaseProps;
 
-const { banner_data, summary, deets, heading } = Astro.props;
+const { banner_data, summary, deets, heading, ...base_props } = Astro.props;
 ---
 
-<DefaultLayout>
+<DefaultLayout {...base_props}>
 	<slot name="additional_head" slot="additional_head" />
 	<Header
 		transition:persist

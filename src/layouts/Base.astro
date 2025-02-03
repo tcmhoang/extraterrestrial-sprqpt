@@ -2,6 +2,20 @@
 import 'styles/base.scss';
 
 import { ClientRouter } from 'astro:transitions';
+import { format_date } from '@/fns';
+
+export type Props = {
+	mb_created?: Date;
+	mb_modified?: Date;
+	mb_title?: string;
+};
+
+const static_date = new Date();
+const {
+	mb_created = static_date,
+	mb_modified = static_date,
+	mb_title = "Conrad Hpang's blogs",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -55,6 +69,12 @@ import { ClientRouter } from 'astro:transitions';
 			title="Conrad Hoang's digitial attic"
 			href={new URL('rss.xml', Astro.site)}
 		/>
+
+		<meta name="DC.Date" content={format_date(mb_created)} />
+		<meta name="DC.Date.modified" content={format_date(mb_modified)} />
+		<meta name="DC.title" content={mb_title} />
+		<meta name="DC.Creator" content="Conrad Hoang" />
+		<meta name="DC.Language" content="en" />
 
 		<slot name="additional_head" />
 	</head>

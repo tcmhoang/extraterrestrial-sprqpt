@@ -1,5 +1,6 @@
 ---
 import DefaultWithHeaderLayout from './DefaultWithHeader.astro';
+import { type Props as BaseProps } from './Base.astro';
 import CalendarIcon from 'components/icons/CalendarIcon.svg';
 import TagIcon from 'components/icons/TagIcon.svg';
 import NameWithVerifiedBadge from '@/components/masters/NameWithVerifiedBadge.astro';
@@ -10,9 +11,9 @@ export type Props = {
 	title: string;
 	date: Date;
 	tags: string[];
-};
+} & BaseProps;
 
-const { banner_data, title, date, tags } = Astro.props;
+const { banner_data, title, date, tags, ...base_props } = Astro.props;
 ---
 
 <DefaultWithHeaderLayout
@@ -22,6 +23,7 @@ const { banner_data, title, date, tags } = Astro.props;
 	]}
 	{banner_data}
 	heading={title}
+	{...base_props}
 >
 	<NameWithVerifiedBadge slot="header_summary" />
 
