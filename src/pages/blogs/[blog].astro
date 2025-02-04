@@ -5,6 +5,7 @@ import { render } from 'astro:content';
 import { build_title } from '@/consts';
 import 'styles/blog.scss';
 import { fetch_blog_image_metadata } from '@/fns';
+import { undefined } from 'astro:schema';
 
 export const prerender = true;
 
@@ -19,7 +20,7 @@ export async function getStaticPaths() {
 type Props = CollectionEntry<'blog'>;
 
 const blog = Astro.props;
-const { date, tags, title } = blog.data;
+const { date, tags, title, created } = blog.data;
 const { Content } = await render(blog);
 const mb_image_meta_data = fetch_blog_image_metadata(blog.id);
 ---
@@ -28,12 +29,14 @@ const mb_image_meta_data = fetch_blog_image_metadata(blog.id);
 	{date}
 	{tags}
 	{title}
-	banner_data={mb_image_meta_data
-		? {
-				hero_url: mb_image_meta_data.fetcher(),
-				hero_alt: mb_image_meta_data.alt,
-			}
-		: undefined}
+	mb_title={title}
+	mb_created={created}
+	mb_modified={date}
+	banner_data={mb_image_meta_data &&
+		({
+			hero_url: mb_image_meta_data.fetcher(),
+			hero_alt: mb_image_meta_data.alt,
+		} as BannerImageData)}
 >
 	<title slot="additional_head">{build_title(blog.id)}</title>
 

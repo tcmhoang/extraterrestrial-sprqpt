@@ -19,7 +19,7 @@ const tab = Astro.props;
 const { Content } = await render(tab);
 ---
 
-<Layout title={tab.data.title}>
+<Layout title={tab.data.title} mb_title={tab.data.title}>
 	<ContentPartial date={tab.data.date}>
 		<Content />
 	</ContentPartial>

@@ -13,7 +13,11 @@ const MbContent = mb_rendered_res && mb_rendered_res.Content;
 
 {
 	mb_entry && mb_rendered_res && MbContent && (
-		<BaseLayout>
+		<BaseLayout
+			mb_title="Conrad Hoang's CV"
+			mb_created={mb_entry.data.created}
+			mb_modified={mb_entry.data.date}
+		>
 			<Fragment slot="additional_head">
 				<title>{build_title(mb_entry.data.title)}</title>
 				<meta name="description" content="Conrad Hoang's résumé" />

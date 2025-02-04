@@ -23,7 +23,7 @@ const all_blogs = blogs
 const latest_updated = all_blogs.length ? all_blogs[0].date : new Date();
 ---
 
-<Layout title="Blogs">
+<Layout title="Blogs" mb_title="Blogs">
 	<ContentPartial date={latest_updated}>
 		<BlogOutliner {tags} blogs={all_blogs} client:load>
 			{

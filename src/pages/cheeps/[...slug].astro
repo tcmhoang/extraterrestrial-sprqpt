@@ -20,7 +20,11 @@ const tweet = Astro.props;
 const { Content } = await render(tweet);
 ---
 
-<Layout>
+<Layout
+	mb_title={tweet.data.title ?? "Conrad's cheep"}
+	mb_created={tweet.data.date}
+	mb_modified={tweet.data.date}
+>
 	<title slot="additional_head">{build_title(tweet.id)}</title>
 
 	<div class="container">
@@ -30,17 +34,17 @@ const { Content } = await render(tweet);
 			</Cheep>
 		</div>
 	</div>
-</Layout>
 
-<style>
-	.container {
-		display: flex;
-		height: 75vh;
-		justify-items: center;
-		align-items: center;
-	}
-	.card {
-		background-color: var(--surface);
-		border-radius: 0.5rem;
-	}
-</style>
+	<style>
+		.container {
+			display: flex;
+			height: 75vh;
+			justify-items: center;
+			align-items: center;
+		}
+		.card {
+			background-color: var(--surface);
+			border-radius: 0.5rem;
+		}
+	</style>
+</Layout>
