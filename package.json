@@ -23,6 +23,7 @@
         "@astrojs/sitemap": "^3.2.1",
         "@astrojs/svelte": "^7.0.3",
         "@astrojs/ts-plugin": "^1.10.4",
+        "@astrolib/seo": "^1.0.0-beta.8",
         "@markdoc/markdoc": "^0.4.0",
         "@types/sanitize-html": "^2.13.0",
         "astro": "^5.1.9",

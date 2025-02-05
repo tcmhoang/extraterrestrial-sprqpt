@@ -3,6 +3,8 @@ import 'styles/base.scss';
 
 import { ClientRouter } from 'astro:transitions';
 import { build_title, format_date } from '@/fns';
+import { k_avatar_url, k_author } from '@/consts.js';
+import { AstroSeo } from '@astrolib/seo';
 
 export type Props = {
 	mb_created?: Date;
@@ -18,6 +20,24 @@ const {
 	mb_title = "Conrad Hpang's blogs",
 	mb_description = "Conrad Hoang's personal website",
 } = Astro.props;
+
+const socials = ['https://keybase.io/tcmhoang', 'https://github.com/tcmhoang'];
+
+const ld = {
+	'@context': 'https://schema.org',
+	'@type': ['Person', 'Organization'],
+	name: `${k_author}`,
+	url: `${Astro.url}`,
+	image: `${k_avatar_url}`,
+	logo: {
+		'@type': 'ImageObject',
+		url: `${Astro.url}images/favicon-32x32.png`,
+		width: 32,
+		height: 32,
+	},
+	sameAs: [`${socials.join(', ')}`],
+};
+const ld_script = `<script type="application/ld+json">${JSON.stringify(ld)}${'<'}/script>`;
 ---
 
 <!doctype html>
@@ -79,6 +99,49 @@ const {
 		<meta name="DC.Language" content="en" />
 		<title>{build_title(mb_title)}</title>
 		<meta name="description" content={mb_description} />
+		<meta
+			name="keywords"
+			content={['Portfolio', 'Blog', 'Person'].join(', ')}
+			}
+		/>
+		<meta name="author" content={k_author} />
+
+		<meta
+			property="og:logo"
+			content={`${Astro.url}images/favicon-32x32.png`}
+		/>
+
+		<Fragment set:html={ld_script} />
+
+		<AstroSeo
+			canonical={Astro.url.toString()}
+			noindex={false}
+			,
+			nofollow={true}
+			,
+			openGraph={{
+				url: Astro.url.toString(),
+				title: mb_title,
+
+				description: mb_description,
+				locale: 'en-US',
+				profile: {
+					firstName: 'Conrad',
+					lastName: 'Hoang',
+					gender: 'Male',
+					username: 'tcmhoang',
+				},
+				site_name: 'Spark point',
+				type: 'website',
+			}}
+			robotsProps={{
+				noarchive: true,
+				noimageindex: true,
+				nosnippet: true,
+			}}
+		/>
+
+		<Fragment set:html={ld_script} />
 
 		<slot name="additional_head" />
 	</head>

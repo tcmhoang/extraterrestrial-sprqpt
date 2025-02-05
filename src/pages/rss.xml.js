@@ -6,6 +6,7 @@ import Markdoc from '@markdoc/markdoc';
 import markdoc_config from '../../markdoc.config.mjs';
 import astro_config from '../../astro.config.mjs';
 import { format_date } from '../fns.js';
+import { k_author, k_avatar_url } from '../consts.js';
 
 /** @type {import('npm:astro').APIRoute} */
 export const GET = async (
@@ -17,8 +18,6 @@ export const GET = async (
 	);
 
 	const url = context.site ?? astro_config.site ?? '';
-	const author = 'Conrad Hoang';
-	const avatar_url = 'https://avatars.githubusercontent.com/u/51996720?v=4';
 	const build_date = format_date(new Date());
 	const pub_date = format_date(posts[0].data.date);
 
@@ -41,15 +40,15 @@ export const GET = async (
 		customData: `
 		<atom:link href="${url}/rss.xml" rel="self" type="application/rss+xml"/>
 		<language>en-us</language>
-		<copyright>${author} ${new Date().getFullYear()}</copyright>
+		<copyright>${k_author} ${new Date().getFullYear()}</copyright>
 		<docs>https://www.rssboard.org/rss-specification</docs>
 		<pubDate>${pub_date}</pubDate>
 		<lastBuildDate>${build_date}</lastBuildDate>
-		<managingEditor>${author}</managingEditor>
-		<webMaster>${author}</webMaster>
+		<managingEditor>${k_author}</managingEditor>
+		<webMaster>${k_author}</webMaster>
 		<image>
-			<url>${avatar_url}</url>
-			<title>${author}</title>
+			<url>${k_avatar_url}</url>
+			<title>${k_author}</title>
 			<link>${url}</link>
 		</image>
 
@@ -61,7 +60,7 @@ export const GET = async (
 			pubDate: post.data.created,
 			link: `${url}blogs/${post.id}/`,
 			description: post.data.excerpt,
-			author: author,
+			author: k_author,
 			categories: post.data.tags,
 			source: { title: 'Conrad Hoang RSS Feed', url: `${url}rss.xml` },
 			content: sanitizeHtml(

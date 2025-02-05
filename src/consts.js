@@ -130,3 +130,8 @@ export const k_links = [
 
 export const k_emoji_regex =
 	/[\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF]|\?/g;
+
+export const k_avatar_url =
+	'https://avatars.githubusercontent.com/u/51996720?v=4';
+
+export const k_author = 'Conrad Hoang';
