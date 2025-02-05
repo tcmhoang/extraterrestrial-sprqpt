@@ -13,6 +13,7 @@
         ],
         "verbatimModuleSyntax": true
     },
+    "unstable": ["bare-node-builtins"],
     "lint": {
         "include": ["src/"],
         "rules": {
@@ -24,7 +25,7 @@
     "tasks": {
         "lint": "deno lint"
     },
-    "mports": {
+    "imports": {
         "@std/path": "jsr:@std/path@^1.0.8",
         "@/": "./src/",
         "@styles/": "./src/styles/",

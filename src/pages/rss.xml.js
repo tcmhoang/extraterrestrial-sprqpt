@@ -4,20 +4,16 @@ import { k_hostname, k_site_description } from '../consts';
 import sanitizeHtml from 'sanitize-html';
 import Markdoc from '@markdoc/markdoc';
 import markdoc_config from '../../markdoc.config.mjs';
-import astro_config from '../../astro.config.mjs';
 import { format_date } from '../fns.js';
 import { k_author, k_avatar_url } from '../consts.js';
 
 /** @type {import('npm:astro').APIRoute} */
-export const GET = async (
-	/** @type {import('npm:astro').APIContext} */
-	context,
-) => {
+export const GET = async () => {
 	const posts = (await getCollection('blog')).toSorted(
 		(a, b) => b.data.created.valueOf() - a.data.created.valueOf(),
 	);
 
-	const url = context.site ?? astro_config.site ?? '';
+	const url = 'https://sprqpt.com';
 	const build_date = format_date(new Date());
 	const pub_date = format_date(posts[0].data.date);
 
