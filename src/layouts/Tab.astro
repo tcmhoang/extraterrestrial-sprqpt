@@ -4,9 +4,7 @@ import DefaultWithHeaderLayout from 'layouts/DefaultWithHeader.astro';
 import { type Props as BaseProps } from './Base.astro';
 import FeedNavigation from '@/components/masters/FeedNavigation.astro';
 
-export type Props = {
-	title: string;
-} & BaseProps;
+type Props = { title: string } & BaseProps;
 
 const { title, ...base_props } = Astro.props;
 ---
