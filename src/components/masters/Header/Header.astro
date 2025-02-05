@@ -14,20 +14,7 @@ const { heading: mb_heading, banner_data, deets } = Astro.props;
 
 <header>
 	<div class="banner-container">
-		{
-			typeof banner_data.hero_url == 'string' ? (
-				<Banner
-					hero_url={banner_data.hero_url}
-					hero_alt={banner_data.hero_alt}
-					hero_css={(banner_data as BannerIFrameData).hero_css}
-				/>
-			) : (
-				<Banner
-					hero_url={banner_data.hero_url}
-					hero_alt={banner_data.hero_alt}
-				/>
-			)
-		}
+		<Banner data={banner_data} />
 	</div>
 
 	<div class="w-content overview">
@@ -57,7 +44,7 @@ const { heading: mb_heading, banner_data, deets } = Astro.props;
 						{text.startsWith('/') ? (
 							<a
 								href={text}
-								title=`Go to my ${text.split('/').pop()}`
+								title={`Go to my ${text.split('/').pop()}`}
 							>
 								{text}
 							</a>

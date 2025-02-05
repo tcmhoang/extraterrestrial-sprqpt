@@ -2,7 +2,6 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Layout from 'layouts/Default.astro';
 import { render } from 'astro:content';
-import { build_title } from '@/consts';
 import Cheep from 'layouts/Cheep/Cheep.astro';
 
 export const prerender = true;
@@ -22,11 +21,10 @@ const { Content } = await render(tweet);
 
 <Layout
 	mb_title={tweet.data.title ?? "Conrad's cheep"}
+	mb_description={tweet.data.description}
 	mb_created={tweet.data.date}
 	mb_modified={tweet.data.date}
 >
-	<title slot="additional_head">{build_title(tweet.id)}</title>
-
 	<div class="container">
 		<div class="card">
 			<Cheep {...tweet.data} id={tweet.id} pinned={false}>

@@ -2,7 +2,6 @@
 import { getEntry } from 'astro:content';
 import BaseLayout from 'layouts/Base.astro';
 import { render } from 'astro:content';
-import { build_title } from '@/consts';
 
 const mb_entry = await getEntry('master', 'resume');
 
@@ -17,12 +16,8 @@ const MbContent = mb_rendered_res && mb_rendered_res.Content;
 			mb_title="Conrad Hoang's CV"
 			mb_created={mb_entry.data.created}
 			mb_modified={mb_entry.data.date}
+			mb_description="Conrad Hoang's résumé"
 		>
-			<Fragment slot="additional_head">
-				<title>{build_title(mb_entry.data.title)}</title>
-				<meta name="description" content="Conrad Hoang's résumé" />
-			</Fragment>
-
 			<div>
 				<MbContent />
 				<small>Updated on {mb_entry.data.date.toDateString()}</small>

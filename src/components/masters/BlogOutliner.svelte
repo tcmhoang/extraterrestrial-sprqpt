@@ -145,11 +145,11 @@
 		justify-content: center;
 	}
 
-	picture {
+	:global(picture) {
 		width: 100%;
 	}
 
-	picture.card-thumbnail img,
+	:global(picture.card-thumbnail img),
 	.card-thumbnail {
 		object-fit: cover;
 		width: 100%;

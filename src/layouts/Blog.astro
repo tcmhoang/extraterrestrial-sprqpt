@@ -8,12 +8,11 @@ import { format_date } from '@/fns';
 
 type Props = {
 	banner_data?: BannerData;
-	title: string;
 	date: Date;
 	tags: string[];
 } & BaseProps;
 
-const { banner_data, title, date, tags, ...base_props } = Astro.props;
+const { banner_data, mb_title, date, tags, ...base_props } = Astro.props;
 ---
 
 <DefaultWithHeaderLayout
@@ -22,13 +21,13 @@ const { banner_data, title, date, tags, ...base_props } = Astro.props;
 		{ text: tags.length ? tags.join(', ') : 'Unspecified', icon: TagIcon },
 	]}
 	{banner_data}
-	heading={title}
+	heading={mb_title}
 	{...base_props}
 >
 	<NameWithVerifiedBadge slot="header_summary" />
 
 	<Fragment slot="header_heading">
-		{title}
+		{mb_title}
 	</Fragment>
 
 	<slot name="additional_head" slot="additional_head" />

@@ -1,20 +1,10 @@
 ---
-import { build_title } from '@/consts';
 import DefaultWithHeaderLayout from 'layouts/DefaultWithHeader.astro';
-import { type Props as BaseProps } from './Base.astro';
+import { type Props } from './Base.astro';
 import FeedNavigation from '@/components/masters/FeedNavigation.astro';
-
-type Props = { title: string } & BaseProps;
-
-const { title, ...base_props } = Astro.props;
 ---
 
-<DefaultWithHeaderLayout {...base_props}>
-	<Fragment slot="additional_head">
-		<title>{build_title(title)}</title>
-		<meta name="description" content="Conrad Hoang's personal website" />
-	</Fragment>
-
+<DefaultWithHeaderLayout {...Astro.props}>
 	<FeedNavigation transition:persist />
 	<slot />
 </DefaultWithHeaderLayout>

@@ -2,11 +2,11 @@
 import { Picture } from 'astro:assets';
 import InjectableIFrame from './InjectableIFrame.svelte';
 
-export type Props = BannerIFrameData | BannerImageData;
+export type Props = { data: BannerIFrameData | BannerImageData };
 
-const { hero_url, hero_alt } = Astro.props;
+const { data } = Astro.props;
 
-const mb_hero_css = Astro.props?.hero_css;
+const { hero_url, hero_alt, hero_css } = data;
 ---
 
 <div>
@@ -15,7 +15,7 @@ const mb_hero_css = Astro.props?.hero_css;
 			<InjectableIFrame
 				{hero_url}
 				{hero_alt}
-				hero_css={mb_hero_css!}
+				hero_css={hero_css!}
 				client:load
 			/>
 		) : (
