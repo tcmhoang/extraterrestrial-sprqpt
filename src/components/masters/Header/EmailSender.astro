@@ -8,7 +8,7 @@ import ProtectedLink from 'components/nodes/ProtectedLink.svelte';
 	client:load
 >
 	<div class="email-sender">
-		Contact <svg
+		<strong>Contact</strong><svg
 			role="img"
 			aria-hidden="true"
 			xmlns="http://www.w3.org/2000/svg"
@@ -34,25 +34,28 @@ import ProtectedLink from 'components/nodes/ProtectedLink.svelte';
 
 <style lang="scss">
 	.email-sender {
+		strong {
+			margin-top: 0.2rem;
+		}
 		display: inline-flex;
 		column-gap: 0.25rem;
 		align-items: center;
-		border: 1px solid var(--mauve);
+		border: 1px solid var(--link);
 		padding: 0.25rem 0.75rem;
 		border-radius: 30px;
 		font-weight: bold;
 		stroke-width: 0.13rem;
 		fill: var(--base);
-		stroke: var(--mauve);
-		color: var(--mauve);
+		stroke: var(--link);
+		color: var(--link);
 
 		&:focus,
 		&:hover,
 		&:focus-visible,
 		&:active {
 			color: var(--crust);
-			background: var(--mauve);
-			fill: var(--mauve);
+			background: var(--link);
+			fill: var(--link);
 			stroke: var(--crust);
 
 			outline: 0;

@@ -9,7 +9,8 @@ import avatar from 'assets/me.jpeg';
 	loading="eager"
 	decoding="async"
 	class="avatar"
-	sizes="125px"
+	widths={[80, 125]}
+	sizes={`(max-width: 425px) 80px, 125px`}
 />
 
 <style>

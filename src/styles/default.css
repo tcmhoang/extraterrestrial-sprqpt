@@ -45,7 +45,8 @@ h3 {
 
 a {
 	text-decoration: none;
-	color: var(--mauve);
+	font-weight: bold;
+	color: var(--link, var(--mauve));
 }
 
 html:focus-within {

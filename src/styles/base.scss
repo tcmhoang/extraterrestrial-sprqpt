@@ -87,6 +87,8 @@ html,
 	--base: var(--l-base);
 	--crust: var(--l-crust);
 
+	--link: color-mix(in hsl, var(--blue), var(--text) 10%);
+
 	color-scheme: light;
 
 	.astro-code,
@@ -121,6 +123,8 @@ html,
 	--p-surface: var(--d-p-surface);
 	--base: var(--d-base);
 	--crust: var(--d-crust);
+
+	--link: color-mix(in hsl, var(--mauve), var(--text) 25%);
 
 	color-scheme: dark;
 

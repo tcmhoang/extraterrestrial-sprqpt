@@ -112,12 +112,8 @@ const { heading: mb_heading, banner_data, deets } = Astro.props;
 		height: 1.25rem;
 	}
 
-	a {
-		font-weight: bold;
-		color: color-mix(in hsl, var(--peach), black 20%);
-		&:hover {
-			text-decoration: underline 4px;
-			text-underline-offset: 2px;
-		}
+	a:hover {
+		text-decoration: underline 4px;
+		text-underline-offset: 2px;
 	}
 </style>
