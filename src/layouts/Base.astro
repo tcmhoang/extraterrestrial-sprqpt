@@ -25,10 +25,15 @@ const socials = ['https://keybase.io/tcmhoang', 'https://github.com/tcmhoang'];
 
 const ld = {
 	'@context': 'https://schema.org',
-	'@type': ['Person', 'Organization'],
+	'@type': ['Person'],
 	name: `${k_author}`,
 	url: `${Astro.url}`,
 	image: `${k_avatar_url}`,
+	additionalName: 'Conrad Hoang',
+	givenName: 'Tuan',
+	familyName: 'Hoang',
+	gender: 'male',
+	jobTitle: 'Software Engineer',
 	logo: {
 		'@type': 'ImageObject',
 		url: `${Astro.url}images/favicon-32x32.png`,
