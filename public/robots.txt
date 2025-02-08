@@ -1,8 +1,0 @@
-# https://www.robotstxt.org/robotstxt.html
-User-agent: *
-Allow: /
-
-Sitemap: https://sqrqpt.com/sitemap.xml
-Disallow: /*.js$
-Disallow: /*.mjs$
-Disallow: /*.json

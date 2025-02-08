@@ -11,6 +11,7 @@ export type Props = {
 	mb_modified?: Date;
 	mb_title?: string;
 	mb_description?: string;
+	site_map_included?: boolean;
 };
 
 const static_date = new Date();
@@ -19,6 +20,7 @@ const {
 	mb_modified = static_date,
 	mb_title = "Conrad Hpang's blogs",
 	mb_description = "Conrad Hoang's personal website",
+	site_map_included = true,
 } = Astro.props;
 
 const socials = ['https://keybase.io/tcmhoang', 'https://github.com/tcmhoang'];
@@ -96,6 +98,8 @@ const ld_script = `<script type="application/ld+json">${JSON.stringify(ld)}${'<'
 			title="Conrad Hoang's digitial attic"
 			href={new URL('rss.xml', Astro.site)}
 		/>
+
+		{site_map_included && <link rel="sitemap" href="/sitemap-index.xml" />}
 
 		<meta name="DC.Date" content={format_date(mb_created)} />
 		<meta name="DC.Date.modified" content={format_date(mb_modified)} />
