@@ -3,11 +3,12 @@ import { k_hostname } from '@/consts.js';
 export const build_title = (/** @type string */ title) =>
 	`${title} • ${k_hostname}`;
 
+const all_images = import.meta.glob('/src/assets/*.{jpeg,jpg,png,gif}');
 const img_map = new Map([
 	[
 		'20240202-my-setup',
 		{
-			fetcher: async () => await import('./assets/danang-2021.png'),
+			fetcher: all_images['/src/assets/danang-2021.jpeg'],
 			alt: 'A senere view from the balcony back in the day I was in Danang',
 		},
 	],
