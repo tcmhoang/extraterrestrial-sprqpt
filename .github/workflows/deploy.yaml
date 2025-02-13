@@ -24,13 +24,15 @@ jobs:
 
             - name: 🔍 Get deno cache directory
               run: |
-                  echo "DENO_PATH=$(deno info | grep -e 'DENO_DIR.*' | sed -E 's/DENO_DIR.*:[ \t]*(.*)/\1/')" >> $GITHUB_ENV
+                  echo "DENO_PATH=$(deno info | grep -e 'DENO_DIR.*' | sed -E 's/DENO_DIR.*:(.*)/\1/' | tr -d ' ')" >> $GITHUB_ENV
 
             - name: 🔮 Setup deno cache
               uses: actions/cache@v4
               id: cache
               with:
-                  path: ${{ env.DENO_PATH }}
+                  path: |
+                      ${{ env.DENO_PATH }}
+                      node_modules
                   key: ${{ runner.os }}-cache-${{ hashFiles('**/package.json') }}
                   restore-keys: |
                       ${{ runner.os }}-deno-cache
