@@ -119,7 +119,7 @@ export const k_links = [
 	},
 	{
 		content: 'Schedule a call',
-		link: 'https://calendly.com/tcmhoang/30min',
+		link: 'https://tcmhoang.youcanbook.me',
 		icon: ScheduleIcon,
 	},
 ];

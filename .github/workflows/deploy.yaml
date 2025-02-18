@@ -62,4 +62,4 @@ jobs:
                      --branch=main \
                      --commit-hash="${{ env.COMMIT_HASH }}" \
                      --commit-message="${{ env.COMMIT_MESSAGE }}" \
-                     --commit-dirty=false
+                     --commit-dirty=true
